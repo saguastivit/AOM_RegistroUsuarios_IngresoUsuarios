@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fadd1b002a354a4dad883563749c0f0e" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.accion" Width="1.5" PointX="11.25" PointY="5.75" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.actividad" Width="1.5" PointX="2.625" PointY="6.125" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.concepto" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.concepto_formato" Width="1.5" PointX="5.25" PointY="1.875" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.edc" Width="1.5" PointX="15.375" PointY="5.875" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.edc_formato" Width="1.5" PointX="13.375" PointY="5.875" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.empresa" Width="1.5" PointX="7.125" PointY="5.25" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.formato" Width="1.5" PointX="13.375" PointY="1" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.log_auditoria" Width="1.5" PointX="15.25" PointY="1.875" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.naturaleza_concepto" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.servicio" Width="1.5" PointX="0.625" PointY="6.25" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.tipo_accion" Width="1.5" PointX="9.25" PointY="7.5" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.tipo_concepto" Width="1.5" PointX="11.25" PointY="1.375" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.tramo" Width="1.5" PointX="7.125" PointY="1.25" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_accion_empresa" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_accion_tipo_accion" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_actividad_servicio" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_formato_actividad" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_concepto_concepto" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_concepto_formato_concepto" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_concepto_naturaleza_concepto" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_concepto_tipo_concepto" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_concepto_formato_formato" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_edc_formato_edc" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_edc_formato_formato" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.permiso" Width="1.5" PointX="14.875" PointY="14.625" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.role" Width="1.5" PointX="14.875" PointY="11.5" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.role_permiso" Width="1.5" PointX="17.125" PointY="14.5" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.user" Width="1.5" PointX="17.125" PointY="10" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.user_empresa" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.role_permiso_permiso" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.role_permiso_role" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.user_role" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.empresa_actividad" Width="1.5" PointX="12.375" PointY="10.125" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_empresa_actividad_actividad" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_empresa_actividad_empresa" />
+        <EntityTypeShape EntityType="CREG_Analitica_AWSModel.historial_aom" Width="1.5" PointX="17.625" PointY="2.875" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_historial_aom_empresa" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_historial_aom_formato" />
+        <AssociationConnector Association="CREG_Analitica_AWSModel.fk_historial_aom_tramo" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,54 @@
+<div class="admintbl table-responsive">
+    <table datatable [dtOptions]="dtOptions" id="actividades" class="table table-sm table-striped table-bordered " style="width:100%">
+        <thead>
+            <tr>
+                <th>Cod</th>
+                <th>Descripción</th>
+                <th>Servicio</th>
+                <th>Estado</th>
+                <th>Acciones </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let activity of activities ">
+                <td>{{ activity.cod_actividad }}</td>
+                <td>{{ activity.des_actividad }}</td>
+                <td>{{ activity.nombre_servicio }}</td>
+                <td>
+                    <div class="switch-button">
+                        <input type="checkbox" name="switch-button" id="{{ activity.id_actividad }}" class="switch-button__checkbox" [checked]="activity.activo" (change)="changeState($event, modalActualizar) ">
+                        <label for="{{ activity.id_actividad }}" class="switch-button__label"></label>
+                    </div>
+                </td>
+                <td>
+                    <a [routerLink]=" " (click)="activitySelected(activity.id_actividad)"><i class="fas fa-edit " data-toggle="tooltip" title="Editar dato"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<ng-template #modalActualizar class="modal fade" data-backdrop="static " data-keyboard="false " tabindex="-1 " aria-labelledby="staticBackdropLabel " aria-hidden="true ">
+
+    <div>
+        <div class="modal-header">
+            <h5 class="modal-title " id="modalActualizar ">
+                Actualizar datos
+            </h5>
+            <button type="button " class="close " data-dismiss="modal " aria-label="Close " (click)="modalRef.hide(); refreshState() ">
+                <span aria-hidden="true ">&times;</span>
+            </button>
+        </div>
+        <div *ngIf="load" class="container">
+            <img src="assets/images/load.gif " class="imgLoad " alt="load ">
+        </div>
+        <div *ngIf="!load" class="modal-body ">
+            {{ estateActivity }}
+        </div>
+        <div *ngIf="!load" class="modal-footer ">
+            <button type="button " class="btn btn-success " (click)="updateState(); modalRef.hide() ">Continuar</button>
+            <button type="button " class="btn btn-warning " (click)="modalRef.hide(); refreshState() " data-dismiss="modal ">Cancelar</button>
+        </div>
+    </div>
+</ng-template>

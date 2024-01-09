@@ -1,0 +1,128 @@
+<h2>Datos a capturar</h2>
+<div class="row">
+    <div class="col-sm-2">
+        <div class="form-group">
+            <label>Código</label>
+            <input type="text" class="form-control" id="codigo" #codigo placeholder="Código" value="{{selected.cod_edc !=null ? selected.cod_edc : ''}}" (keyup)="updateFile(codigo)">
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" rows="5" class="form-control" id="nombre" #nombre placeholder="Nombre EDC" value="{{selected.nombre_edc !=null ? selected.nombre_edc : ''}}" (keyup)="updateFile(nombre)">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label>Descripción</label>
+            <textarea rows="5" class="form-control" id="descripcion" #descripcion placeholder="Descripción" value="{{selected.descripcion_edc !=null ? selected.descripcion_edc : ''}}" (keyup)="updateFile(descripcion)"></textarea>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div *ngIf="actualizar " class="col-sm-4">
+        <label>Estado</label>
+        <div class="form-group switch-button">
+            <input type="checkbox" name="switch-button" id="id_edc" #id_edc class="switch-button__checkbox" [checked]="selected.activo" (click)="updateFile(id_edc)">
+            <label for="id_edc" class="switch-button__label"></label>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-end ">
+    <div class="col-2 ">
+        <button class="btn btn-uno " (click)="loadFormats(modalFormatos) ">Formatos</button>
+    </div>
+    <div class="col-2 " *ngIf="!actualizar ">
+        <button class="btn btn-uno " (click)="validateEdc('crear') ">Crear</button>
+    </div>
+    <div class="col-2" *ngIf="actualizar">
+        <button class="btn btn-uno" (click)="changeEdc(modalActualizar)">Actualizar</button>
+    </div>
+    <div class="col-2 ">
+        <button class="btn btn-dos " (click)="cleanForm() ">Limpiar</button>
+    </div>
+</div>
+
+
+<ng-template #modalActualizar class="modal fade " data-backdrop="static " data-keyboard="false " tabindex="-1 " aria-labelledby="staticBackdropLabel " aria-hidden="true ">
+    <div>
+        <div class="modal-header ">
+            <h5 class="modal-title " id="modalActualizar ">
+                Actualizar datos
+            </h5>
+            <button type="button " class="close " data-dismiss="modal " aria-label="Close " (click)="modalRef.hide() ">
+                <span aria-hidden="true ">&times;</span>
+            </button>
+        </div>
+        <div *ngIf="!actualizar" class="modal-body ">
+            {{ estateEdc }}
+        </div>
+        <div *ngIf="actualizar" class="modal-body ">
+            {{ estateEdc }}
+        </div>
+        <div *ngIf="actualizar" class="modal-footer ">
+            <button type="button" class="btn btn-success " (click)="validateEdc('actualizar'); modalRef.hide() ">Continuar</button>
+            <!-- (click)="uploadFiles(modalCargar) " -->
+            <button type="button" class="btn btn-warning " (click)="modalRef.hide() " data-dismiss="modal ">Cancelar</button>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #modalFormatos class="modal fade " data-backdrop="static " data-keyboard="false " tabindex="-1 " aria-labelledby="staticBackdropLabel " aria-hidden="true ">
+    <div>
+        <div class="modal-header ">
+            <h5 class="modal-title " id="modalActualizar ">
+                Formatos
+            </h5>
+            <button type="button " class="close " data-dismiss="modal " aria-label="Close " (click)="modalRef.hide() ">
+                <span aria-hidden="true ">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body ">
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center formatos">
+                    <label for="frm-todos">Seleccionar todos los formatos</label>
+                    <input type="checkbox" id="frmTodos" [checked]="allSelect" #frmTodos (change)="allFormats(frmTodos)">
+                </li>
+            </ul>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let format of formatos">
+                    <!-- *ngIf="format.edcPadreFormato.length > 0" -->
+                    <select [(ngModel)]="format.padre" name="padre" id="padre" #padre class="select" (change)="updateFile(padre , format.id_formato)">
+                        <option value="0">Calculado para</option>
+                        <option [value]="edc.id_edc" *ngFor="let edc of format.edcPadreFormato">{{ format.cod_padre }} - {{ edc.cod_edc }}</option>
+                    </select>
+                
+                    <!-- Modificaciones -->
+                
+                    <select [(ngModel)]="format.padre" name="padre" id="padre" #padre class="select" (change)="updateFile(padre , format.id_formato)">
+                        <option value="0">EDC-Remunerado</option>
+                        <option [value]="edc.id_edc" *ngFor="let edc of format.edcPadreFormato">{{ format.cod_padre }} - {{ edc.cod_edc }}</option>
+                    </select>
+                   
+
+                    <!---------------------------------->
+
+                    <label class="inputSelect">{{ format.cod_formato }} - {{ format.nombre_formato }}</label>
+                    <input type="checkbox" [value]="format.id_formato" id="frm-{{format.id_formato}}" [checked]="format.activoCheck" (change)="uploadFormats($event, format.padre)">
+                </li>
+            </ul>
+
+            
+
+            
+
+        </div>
+    </div>
+</ng-template>
+
+<div *ngIf="awaiting" class="backCortinilla">
+    <div class="containerCortinilla">
+        <div class="imgCortinilla">
+            <img src="assets/images/load.gif" class="imgLoad" alt="load">
+        </div>
+    </div>
+</div>

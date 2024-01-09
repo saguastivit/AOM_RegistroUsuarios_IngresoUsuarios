@@ -1,0 +1,56 @@
+<div class="admintbl table-responsive">
+    <table datatable [dtOptions]="dtOptions" id="actividades" class="table table-sm table-striped table-bordered " style="width:100%">
+        <thead>
+            <tr>
+                <th>Id User</th>
+                <th>Usuario</th>
+                <th>Correo Electronico</th>
+                <th>Rol </th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users ">
+                <td>{{ user.id_user }}</td>
+                <td>{{ user.usuario }}</td>
+                <td>{{ user.correo_electronico }}</td>
+                <td>{{ user.nombre_rol }}</td>
+                <td>
+                    <div class="switch-button">
+                        <input type="checkbox" name="switch-button" id="{{ user.id_user }}" class="switch-button__checkbox" [checked]="user.activo" (change)="changeState($event, modalActualizar) ">
+                        <label for="{{ user.id_user }}" class="switch-button__label"></label>
+                    </div>
+                </td>
+                <td>
+                    <a [routerLink]=" " (click)="userSelected(user.id_user)"><i class="fas fa-edit " data-toggle="tooltip" title="Editar dato"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<ng-template #modalActualizar class="modal fade" data-backdrop="static " data-keyboard="false " tabindex="-1 " aria-labelledby="staticBackdropLabel " aria-hidden="true ">
+
+    <div>
+        <div class="modal-header">
+            <h5 class="modal-title " id="modalActualizar ">
+                Actualizar datos
+            </h5>
+            <button type="button " class="close " data-dismiss="modal " aria-label="Close " (click)="modalRef.hide(); refreshState() ">
+                <span aria-hidden="true ">&times;</span>
+            </button>
+        </div>
+        <div *ngIf="load" class="container">
+            <img src="assets/images/load.gif " class="imgLoad " alt="load ">
+        </div>
+        <div *ngIf="!load" class="modal-body ">
+            {{ estateUser }}
+        </div>
+        <div *ngIf="!load" class="modal-footer ">
+            <button type="button " class="btn btn-success " (click)="updateState(); modalRef.hide() ">Continuar</button>
+            <button type="button " class="btn btn-warning " (click)="modalRef.hide(); refreshState() " data-dismiss="modal ">Cancelar</button>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+
+<section class="cont-form">
+    <div class="container">
+        <div class="card">
+            <div class="row">
+                <div class="col-sm-10 offset-sm-1 col-lg-10 offset-lg-1">
+                    <form name="captura-datos">
+
+                        <app-info-users [selected]='selected' [users]='users'></app-info-users>
+
+                        <hr>
+                        <div class="row">
+                            <div *ngIf="users.length > 1" class="col-sm-12">
+                                <app-tbl-users (idSelected)="userSelected($event)" [users]='users'></app-tbl-users>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div *ngIf="awaiting" class="backCortinilla">
+    <div class="containerCortinilla">
+        <div class="imgCortinilla">
+            <img src="assets/images/load.gif" class="imgLoad" alt="load">
+        </div>
+    </div>
+</div>

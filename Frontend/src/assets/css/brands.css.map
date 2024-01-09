@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;;GAGG;AAGH,UAAU;EACR,WAAW,EAAE,uBAAuB;EACpC,UAAU,EAAE,MAAM;EAClB,WAAW,EAAE,GAAG;EAChB,YAAY,ECLS,KAAK;EDM1B,GAAG,EAAE,2CAAyC;EAC9C,GAAG,EAAE,kDAAgD,CAAC,2BAA2B,EACjF,6CAA2C,CAAC,eAAe,EAC3D,4CAA0C,CAAC,cAAc,EACzD,2CAAyC,CAAC,kBAAkB,EAC5D,uDAAqD,CAAC,aAAa;;;AAGrE,AAAA,IAAI,CAAC;EACH,WAAW,EAAE,uBAAuB;EACpC,WAAW,EAAE,GAAG;CACjB",
+    "sources": [
+        "../sass/awesome/brands.scss",
+        "../sass/awesome/_variables.scss"
+    ],
+    "names": [],
+    "file": "brands.css"
+}

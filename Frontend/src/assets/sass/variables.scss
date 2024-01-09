@@ -1,0 +1,47 @@
+/*============================================================== 
+colores
+============================================================== */
+$main-color: #20479E;
+$govco-color: #3366cc;
+$sec-color: #ED1C24;
+$darksec-color: #C20B19;
+$dark-color: #01296E;
+$light-color: #F1F9FF;
+$wht-color: #FFFFFF;
+$blk-color: #232323;
+$txt-color: #4B4B4B;
+$txt-lgt-color: #999999;
+$gray-color: #EAEAEA;
+$gray-mid: #BABABA;
+$gray-lgh: #F9F9F9;
+
+$lgh-maincolor: #E6EFFD;
+
+/*-------- black shadows -------*/
+$shadow-lgt: rgba($blk-color, 0.25);
+
+$gray-top: #e9ecef;
+
+$agua-color: #41E5DE;
+$roj-color: #cc0000;
+$rojdrk-color: #CE0C3F;
+$rojfull-color: #B50B38;
+$ama-color: #FFC06A;
+$amadrk-color: #FFAB00;
+$nar-color: #FF6C00;
+$vrd-color: #9DC126;
+$mor-color: #2A0964;
+$gris-color: #6c757d;
+$azl-color: $sec-color;
+
+
+$fnd-colorlght: lighten( $main-color, 10% );
+$link-hover-color: lighten($main-color, 10%);
+$top-color: lighten($wht-color, 40%);
+
+/*============================================================== 
+url
+============================================================== */
+
+$img-path: "../images";
+

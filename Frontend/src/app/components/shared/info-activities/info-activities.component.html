@@ -1,0 +1,83 @@
+<h2>Datos a capturar</h2>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Código actividad</label>
+            <input type="text" class="form-control" id="cod" #cod placeholder="Código actividad" value="{{selected.cod_actividad !=null ? selected.cod_actividad : ''}}" (keyup)=updateFile(cod)>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Actividad</label>
+            <input type="text" class="form-control" id="act" #act placeholder="Actividad" value="{{selected.des_actividad !=null ? selected.des_actividad : ''}}" (keyup)=updateFile(act)>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Servicios</label>
+            <ng-multiselect-dropdown id="servicios" name="servicios" [placeholder]="'Servicios'" [data]="services" [settings]="dropdownSettings" [(ngModel)]="opcionesSeleccionadas">
+
+            </ng-multiselect-dropdown>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div *ngIf="actualizar" class="col-sm-4">
+        <label>Estado</label>
+        <div class="form-group switch-button ">
+            <input type="checkbox" name="switch-button" id="{{ selected.id_actividad }}" #status class="switch-button__checkbox" [checked]="selected.activo" (click)="updateFile(status)">
+            <label for="{{ selected.id_actividad }}" class="switch-button__label"></label>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-end ">
+    <div class="col-2 " *ngIf="!actualizar ">
+        <button class="btn btn-uno " (click)="validateActivity('crear') ">Crear</button>
+    </div>
+    <div *ngIf="actualizar " class="col-2 ">
+        <button class="btn btn-uno " (click)="changeActivity(modalActualizar) ">Actualizar</button>
+    </div>
+    <div class="col-2 ">
+        <button class="btn btn-dos " (click)="cleanForm()">Limpiar</button>
+    </div>
+</div>
+
+
+
+<ng-template #modalActualizar class="modal fade " data-backdrop="static " data-keyboard="false " tabindex="-1 " aria-labelledby="staticBackdropLabel " aria-hidden="true ">
+    <div>
+        <div class="modal-header ">
+            <h5 class="modal-title " id="modalActualizar">
+                Actualizar datos
+            </h5>
+            <button type="button " class="close " data-dismiss="modal " aria-label="Close " (click)="modalRef.hide() ">
+                <span aria-hidden="true ">&times;</span>
+            </button>
+        </div>
+        <div *ngIf="!actualizar " class="modal-body ">
+            {{ estateActivity }}
+        </div>
+        <div *ngIf="actualizar " class="modal-body ">
+            {{ estateActivity }}
+        </div>
+        <div *ngIf="actualizar " class="modal-footer ">
+            <button type="button " class="btn btn-success " (click)="validateActivity('actualizar'); modalRef.hide() ">Continuar</button>
+            <!-- (click)="uploadFiles(modalCargar) " -->
+            <button type="button " class="btn btn-warning " (click)="modalRef.hide() " data-dismiss="modal ">Cancelar</button>
+        </div>
+    </div>
+    
+</ng-template>
+
+
+
+
+<div *ngIf="awaiting" class="backCortinilla">
+    <div class="containerCortinilla">
+        <div class="imgCortinilla">
+            <img src="assets/images/load.gif" class="imgLoad" alt="load">
+        </div>
+    </div>
+</div>
+

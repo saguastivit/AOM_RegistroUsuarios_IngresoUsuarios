@@ -1,0 +1,165 @@
+<h2>Datos a capturar</h2>
+<div class="row">
+    <div class="col-sm-4">
+        <label>Nivel</label>
+        <select [(ngModel)]="nivelSeleccionado" name="nivel" id="nivel" #nivel class="form-control" (change)="loadFathersSelected(); updateFile(nivel, codigo)">            
+            <option value="0">-- Nivel de concepto --</option>
+            <option [value]="1">Nivel 1</option>
+            <option [value]="2">Nivel 2</option>
+            <option [value]="3">Nivel 3</option>
+            <option [value]="4">Nivel 4</option>
+        </select>
+    </div>
+    <div class="col-sm-4">
+        <label>Padre</label>
+        <select [(ngModel)]="padreSeleccionado" name="padre" id="padre" #padre class="form-control" (change)="updateFile(padre, codigo)">
+            <option value="0">-- Código padres --</option>
+            <option [value]="padre.cod_concepto" *ngFor="let padre of padresPorNivel">{{padre.cod_concepto}}</option>
+        </select>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Código {{ buildCode }}</label>
+            <input type="text" class="form-control" id="codigo" #codigo placeholder="Código" value="{{selected.cod_concepto !=null ? selected.cod_concepto.substring(0,2) : ''}}" maxlength="2" (load)="FileSubstring(codigo)" (keyup)="updateFile(codigo)">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <label>Tipo Concepto</label>
+        <select [(ngModel)]="tipoConceptoSeleccionado" name="tipo" id="tipo" #tipo class="form-control" (change)="updateFile(tipo)">
+            <option value="0">-- Tipo concepto --</option>
+            <option [value]="type.id_tipo_concepto" *ngFor="let type of conceptsType">{{type.des_tipo_concepto}}</option>
+        </select>
+    </div>
+    <div class="col-sm-4">
+        <label>Naturaleza</label>
+        <select [(ngModel)]="tipoNaturalezaSeleccionado" name="nat" id="nat" #nat class="form-control" (change)="updateFile(nat)">
+            <option value="0">-- Naturaleza --</option>
+            <option [value]="natu.id_naturaleza_concepto " *ngFor="let natu of conceptsNature ">{{natu.desc_naturaleza}}</option>
+        </select>
+    </div>
+    <div class="col-sm-4 ">
+        <div class="form-group ">
+            <label>Descripción</label>
+            <input type="text" class="form-control " id="desc" #desc placeholder="Descripción" value="{{selected.descripcion_concepto !=null ? selected.descripcion_concepto : ''}}" (keyup)="updateFile(desc)">
+        </div>
+    </div>
+</div>
+<div class="row ">
+    <div class="col-sm-4 ">
+        <label>Ref normativa</label>
+        <div class="form-group switch-button">
+            <input type="checkbox" name="switch-button" id="cref" #cref class="switch-button__checkbox " [checked]="selected.flag_ref_normativa" (click)="updateFile(cref)">
+            <label for="cref" class="switch-button__label "></label>
+        </div>
+    </div>
+    <div class="col-sm-4 ">
+        <label>Cargado</label>
+        <div class="form-group switch-button">
+            <input type="checkbox" name="switch-button " id="load" #load class="switch-button__checkbox " [checked]="selected.concepto_cargado" (click)="updateFile(load)">
+            <label for="load" class="switch-button__label "></label>
+        </div>
+    </div>
+    <div *ngIf="actualizar " class="col-sm-4 ">
+        <label>Estado</label>
+        <div class="form-group switch-button ">
+            <input type="checkbox" name="switch-button " id="estate" #estate class="switch-button__checkbox " [checked]="selected.activo" (click)="updateFile(estate)">
+            <label for="estate" class="switch-button__label "></label>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-end ">
+    <div class="col-2 ">
+        <button class="btn btn-uno " (click)="loadFormats(modalFormatos) ">Formatos</button>
+    </div>
+    <div class="col-2 " *ngIf="!actualizar">
+        <button class="btn btn-uno " (click)="validateConcept('crear') ">Crear</button>
+    </div>
+    <div class="col-2 " *ngIf="actualizar">
+        <button class="btn btn-uno " (click)="changeConcept(modalActualizar) ">Actualizar</button>
+    </div>
+    <div class="col-2 ">
+        <button class="btn btn-dos " (click)="cleanForm() ">Limpiar</button>
+    </div>
+</div>
+
+<ng-template #modalActualizar class="modal fade " data-backdrop="static " data-keyboard="false " tabindex="-1 " aria-labelledby="staticBackdropLabel " aria-hidden="true ">
+    <div>
+        <div class="modal-header ">
+            <h5 class="modal-title " id="modalActualizar ">
+                Actualizar datos
+            </h5>
+            <button type="button " class="close " data-dismiss="modal " aria-label="Close " (click)="modalRef.hide() ">
+                <span aria-hidden="true ">&times;</span>
+            </button>
+        </div>
+        <div *ngIf="!actualizar" class="modal-body ">
+            {{ estateConcept }}
+        </div>
+        <div *ngIf="actualizar" class="modal-body ">
+            {{ estateConcept }}
+        </div>
+        <div *ngIf="actualizar" class="modal-footer ">
+            <button type="button" class="btn btn-success " (click)="validateConcept('actualizar'); modalRef.hide() ">Continuar</button>
+            <!-- (click)="uploadFiles(modalCargar) " -->
+            <button type="button" class="btn btn-warning " (click)="modalRef.hide() " data-dismiss="modal ">Cancelar</button>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #modalFormatos class="modal fade " data-backdrop="static " data-keyboard="false " tabindex="-1 " aria-labelledby="staticBackdropLabel " aria-hidden="true ">
+    <div>
+        <div class="modal-header ">
+            <h5 class="modal-title " id="modalActualizar ">
+                Formatos
+            </h5>
+            <button type="button " class="close " data-dismiss="modal " aria-label="Close " (click)="modalRef.hide() ">
+                <span aria-hidden="true ">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body ">
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center formatos">
+
+                    
+
+
+                    <label for="frm-todos">Seleccionar todos los formatos</label>
+                    <input type="checkbox" id="frmTodos" [checked]="allSelect" #frmTodos (change)="allFormats(frmTodos)">
+
+                    <label for="frm-padres">Seleccionar formatos del padre</label>
+                    <input type="checkbox" id="frmPadres" [checked]="fatherSelect" #frmPadres (change)="fatherFormats(frmPadres)">
+
+
+                    <!-----Modificaciones------>
+                    <label for="frm-padres">Seleccionar Tipo de gasto</label>
+                    <input type="checkbox" id="frmPadres" [checked]="fatherSelect" #frmPadres (change)="fatherFormats(frmPadres)">
+                    <!-----Modificaciones------>
+
+
+
+                </li>
+            </ul>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let format of formatos">
+                   
+                    {{ format.cod_formato }} - {{ format.nombre_formato }}
+                    <div>
+                        <input type="checkbox" [value]="format.id_formato" id="frm-{{format.id_formato}}" [checked]="format.activoCheck" (change)="uploadFormats($event)">
+                    </div>
+
+                </li>
+            </ul>
+
+            
+
+
+<div *ngIf="awaiting" class="backCortinilla">
+    <div class="containerCortinilla">
+        <div class="imgCortinilla">
+            <img src="assets/images/load.gif" class="imgLoad" alt="load">
+        </div>
+    </div>
+</div>

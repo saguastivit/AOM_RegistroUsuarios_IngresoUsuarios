@@ -1,0 +1,606 @@
+/* Custom App Estilos */
+@import "variables";
+
+/* Custom Fuentes */
+@import "din-font";
+@import "awesome/brands";
+@import "awesome/fontawesome";
+@import "awesome/solid";
+@import "awesome/brands";
+
+/* Custom App Estilos */
+html {
+    min-height: 100%;
+  }
+  
+body {
+    font-family: 'd-dinregular', Arial, Helvetica, sans-serif;
+    line-height: 1.725rem;
+    color: $txt-color;
+}
+
+a {
+  color: $sec-color;
+  &:hover {
+    color: $darksec-color;
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'd-dindin-bold', Helvetica, Arial, sans-serif;
+  margin: 0 0 0.875rem 0;
+  color: $main-color;
+}
+.card {
+  background-color: $gray-lgh;
+  border: 1px solid transparent;
+  box-shadow: 0 0.2rem 0.2rem $shadow-lgt;
+}
+
+.btn {
+  color: $main-color;
+  margin-bottom: 15px;
+  font-size: 0.9375rem;
+  text-transform: uppercase;
+  border-radius: 4px;
+  min-width: 90px;
+
+  &:hover {
+    background-color: $sec-color;
+    color: $wht-color;
+  }
+
+  &.btn-link {
+    color: $main-color;
+    margin-bottom: 0;
+    &:hover {
+      color: $sec-color;
+      background-color: transparent;
+    }
+  }
+
+  &.btn-uno {
+    background-color: $main-color;
+    color: $wht-color ;
+    &:hover {
+      background-color: $dark-color;
+      box-shadow: none;
+    }
+    &.disabled,
+    &:disabled {
+      background-color:$gray-mid;
+      color: $wht-color;
+    }
+  }
+  &.btn-dos {
+    background-color: $wht-color;
+    border: solid 1px $sec-color;
+    color: $sec-color;
+    &:hover {
+      background-color: $sec-color;
+      box-shadow: none;
+      color: $wht-color;
+    }
+    &.disabled,
+    &:disabled {
+      border: solid 1px $gray-mid;
+      color: $gray-mid;
+      background-color: $wht-color;
+    }
+  }
+  &.btn-login {
+    background-color: $agua-color;
+    border: solid 1px $agua-color;
+    color: $sec-color;
+    text-decoration: none;
+    &:hover {
+      background-color: $sec-color;
+      border: solid 1px $sec-color;
+      box-shadow: none;
+      color: $wht-color;
+      box-shadow: 0 0 1.5rem $agua-color;
+    }
+    &.disabled,
+    &:disabled {
+      border: solid 1px $gray-mid;
+      color: $gray-mid;
+      background-color: $wht-color;
+    }
+  }
+}
+
+.form-control {
+  color: #495057;
+  border-radius: 0;
+  &:focus {
+    border-color: $txt-lgt-color;
+    outline: 0;
+    box-shadow: 0 0 0 0.15rem rgba(0,123,255,.25);
+  }
+  &::placeholder {
+    color: $gray-mid;
+    opacity: 1;
+  }
+}
+
+.breadcrumb {
+  background-color:transparent;
+  padding: 0.5rem 0;
+  margin-bottom: 0;
+  li {
+    font-size: 0.875rem;
+    &.active {
+      color: $sec-color;
+    }
+    a {
+      color: $gray-mid;
+      &:hover {
+        color: $gray-mid;
+      }
+    }
+  }
+}
+
+/* Master */
+.top-bnr {
+  background: $govco-color;
+  height: 50px;
+  .logo-govco {
+    padding-top: 10px;
+    display: block;
+    a {
+      background: url(#{$img-path}/logo-govco.svg) no-repeat 0 0;
+      height: 30px;
+      width: auto;
+      display: block;
+      text-indent: -999999rem;
+    }
+  }
+  .txt-govco{
+    float: right;
+    padding-top: 10px;
+    a{
+      font-family: 'd-dinregular', Arial, Helvetica, sans-serif;
+      font-size: 1.125rem;
+      line-height: 30px;
+      display: block;
+      color: $wht-color;
+      height: 30px;
+      text-decoration: none;
+    }
+  } 
+}
+
+.navbar {
+  padding: 1rem 0rem;
+  .nav-marca{
+    display: block;
+    height: 65px;
+    // width: 140px;
+    margin-right: 10px;    
+    .logoPrincipal {
+      background: url(#{$img-path}/logo-creg.svg) no-repeat 0 0;
+      background-size: 125px 65px;
+      text-indent: -999999rem;
+      display: block;
+      height: 65px;
+      width: 125px;
+    }
+    .logoSecundario {
+      background: url(#{$img-path}/logo-icr.png) no-repeat 0 0;
+      background-size: 330px 65px;
+      text-indent: -999999rem;
+      display: block;
+      height: 65px;
+      width: 330px;
+      margin-left: 15px;
+    }
+  }
+  .logo-ministerio {
+    display: block;
+    a {
+      background: url(#{$img-path}/logo-minenergia.png) no-repeat 0 0;
+      background-size: auto 65px;
+      text-indent: -99999rem;
+      display: block;
+      height: 65px;
+      width: 310px;
+    }
+  }
+}
+
+footer {
+  padding: 2rem 0;
+  background: $govco-color;
+  p {
+    font-size: 0.875rem;
+    color: $wht-color;
+    line-height: 1.2rem;
+    a{
+      color: $wht-color;
+      &:hover {
+        color: $wht-color;
+        text-decoration: underline;
+      }
+    }
+  }
+  .footer-logos {
+    padding: 1.5rem 0;
+    border-right: 1px solid $wht-color;
+    .logo-govco {
+      display: block;
+      margin-bottom: 2rem;
+      a {
+        background: url(#{$img-path}/logo-govco.svg) no-repeat 0 0;
+        height: 30px;
+        width: auto;
+        display: block;
+        text-indent: -999999rem;
+      }
+    }
+    .logo-marcaco {
+      display: block;
+      margin-bottom: 2rem;
+      a {
+        background: url(#{$img-path}/logo-cocolombia.png) no-repeat 0 0;
+        height: 70px;
+        width: 70px;
+        display: block;
+        text-indent: -999999rem;
+        margin: 0 0 0 1.5rem;
+      }
+    }
+  }
+  .datos-dir {
+    padding: 1.5rem 0;
+    border-right: 1px solid $wht-color;
+    .info-dir {
+      margin: 0 2rem;
+      h2 {
+        font-size: 1rem;
+        color: $wht-color;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+  .datos-contacto {
+    padding: 1.5rem 0;
+    .info-contacto {
+      margin: 0 2rem;
+      h2 {
+        font-size: 1rem;
+        color: $wht-color;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}
+
+/* ---------- Contenidos ------------ */
+.ttl-pag {
+  background: $main-color url(#{$img-path}/fnd-banner-azul.png) no-repeat 0 center;
+  background-size: cover;
+  height: 2rem;
+  h1 {
+    color: $agua-color;
+    font-size: 2.5rem;
+    line-height: 6.8rem;
+  }
+    .btn-login {
+      margin-top: 2.35rem;
+    }
+}
+
+.miga-pan {
+  .usuario {
+    margin-top: 1rem;
+    p {
+      line-height: 1rem;
+      color: $main-color;
+      a {
+        color: $main-color;
+      }
+      span {
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
+
+/* Login */
+.cont-login {
+  padding-top: 4rem;
+  margin-bottom: 4rem;
+  .card {
+    h2 {
+      font-size: 1.3rem;
+    }
+    .form-gray {
+      padding: 1rem;
+      background: $gray-color;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+/* Forma */
+.cont-form {
+  margin-bottom: 3rem;
+  .card {
+    margin-top: 2rem;
+    padding: 1.5rem 0;
+    h2 {
+      font-size: 1.5rem;
+    }
+    .upload-files {
+      border: 1px dashed $txt-lgt-color;
+      background-color: $wht-color;
+      border-radius: 0.5rem;
+    }
+    .group-btn {
+      .btn {
+        margin: 0 0.3rem 0.5rem 0;
+      }
+    }
+    .table {
+      font-size: 0.875rem;
+      thead {
+        border-radius: 0.5rem 0.5rem 0 0;
+        tr {
+          font-size: 1rem;
+          background-color: $lgh-maincolor;
+          color: $main-color;
+          font-family: 'd-dindin-bold', Arial, Helvetica, sans-serif;
+          th {
+            border-top: 1px solid transparent;
+            text-align: center;
+          }
+        }
+      }
+      tbody {
+        td {
+          text-align: center;
+          .fas {
+            color: $sec-color ;
+          }
+        } 
+      }
+    }
+    .admintbl {
+      margin-top: 2rem;;
+      .table {
+        font-size: 0.875rem;
+        thead {
+          tr {
+            font-size: 1rem;
+            background-color: $lgh-maincolor;
+            color: $main-color;
+            font-family: 'd-dindin-bold', Arial, Helvetica, sans-serif;
+            th {
+              border-top: 1px solid transparent;
+              text-align: left;
+            }
+          }
+        }
+        tbody {
+          td {
+            text-align: left;
+            .fas {
+              color: $sec-color ;
+              margin-right: 0.3rem;
+              font-size: 1rem;
+              &.fa-edit {
+                color: $main-color;
+              }
+            }
+          } 
+        }
+      }
+      .page-item.active .page-link {
+        background-color: $sec-color;
+        border-color: $sec-color;
+        color: $wht-color;
+      }
+      .page-link {
+        color: $sec-color;
+      }
+    }
+  }
+}
+
+/* Modal */
+.modal {
+  .modal-dialog {
+    .modal-content {
+      .modal-header {
+        border-bottom: 1px solid transparent;
+      }
+      .modal-footer {
+        border-top: 1px solid transparent;
+        justify-content: center;
+      }
+   }
+  }
+}
+
+/* Media queries */
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
+  .navbar {
+    .nav-item {
+      .nav-link {
+        font-size: 0.785rem;
+      }
+    }
+    .logo-ministerio {
+      a {
+        background-size: auto 45px;
+        height: 45px;
+        width: 216px;
+      }
+    } 
+  }
+  .datos {
+    .card {
+      p {
+        height: 6rem;
+      }
+    }
+  }
+  .informacion {
+    .card {
+      .parrafo {
+        height: 22.5rem;
+      }
+    }
+  }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+  .navbar {
+    .nav-item {
+      margin: 0.25rem 0;
+      .nav-link {
+        font-size: 0.825rem;
+        padding: 0.25rem 0;
+      }
+    }
+    .logo-ministerio {
+      display: none;
+    }
+  }
+  .ttl-pag {
+    h1 {
+      margin-top: 0.5rem;
+      font-size: 2rem;
+      line-height: 3rem;
+    }
+    .btn-login {
+      margin-top: 2.5rem;
+    }
+  }
+  footer {
+    .footer-logos {
+      border-right: 1px solid transparent;
+      padding: 0;
+      .logo-govco {
+        margin-bottom: 1rem;
+        a {
+          height: 40px;
+          margin: 1rem 0 0 1rem;
+          width: 200px;
+          float: left;
+        }
+      } 
+      .logo-marcaco {
+        margin-bottom: 0;
+        a {
+          margin: 0rem 1.5rem 0 0;
+          float: right;
+        }
+      }
+    }
+    .datos-dir {
+      border-right: 1px solid transparent;
+      border-bottom: 1px solid #fff;
+      padding: 1.5rem 0 0 0;
+      .info-dir {
+        margin: 0 1rem;
+        h2 {
+          margin-bottom: 1rem;
+        }
+      }
+      
+    }
+    .datos-contacto {
+      padding: 1.5rem 0 0 0;
+      border-bottom: 1px solid #fff;
+      .info-contacto {
+        margin: 0 1rem;
+        h2 {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+  .ttl-pag {
+    height: 4.125rem;
+  }
+  footer {
+    .footer-logos {
+      .logo-govco {
+        a {
+          height: 30px;
+          margin: 1rem 0 0 1rem;
+          width: 140px;
+        }
+      } 
+      .logo-marcaco {
+        a {
+          height: 90px;
+          width: 90px;
+          margin: 0 0 0 0;
+        }
+      }
+    }
+    .datos-dir {
+      border-bottom: 1px solid transparent;
+    }
+    .datos-contacto {
+      border-bottom: 1px solid transparent;
+    }
+  } 
+}
+
+// Mediana (devices, 480px and up)
+
+@media (max-width: 575.98px) {
+
+  .btn {
+    width: 100%;
+    &.btn-dos {
+      margin: 1rem 0;
+    }
+  } 
+  .navbar {
+    .nav-marca{
+      margin: 0 auto;
+    }
+    .nav-item {
+      margin: 0.25rem 0;
+      .nav-link {
+        padding: 0;
+      }
+    }
+  }
+  .cont-login {
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .miga-pan {
+    .usuario {
+      text-align: center!important;
+    }
+  }
+  .cont-form {
+    .card {
+      padding: 1.5rem 1rem;
+    .group-btn {
+      p.small {
+        text-align: center;
+      }
+      }
+    }
+  } 
+}
+
+
+
+
+
+

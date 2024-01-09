@@ -1,0 +1,1589 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CREG_Analitica_AWSModel.Store" Provider="Npgsql" ProviderManifestToken="13.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="accion">
+          <Key>
+            <PropertyRef Name="id_accion" />
+          </Key>
+          <Property Name="id_accion" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_empresa" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="id_tipo_accion" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="varchar" MaxLength="8000" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="actividad">
+          <Key>
+            <PropertyRef Name="id_actividad" />
+          </Key>
+          <Property Name="id_actividad" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cod_actividad" Type="text" Nullable="false" />
+          <Property Name="des_actividad" Type="text" Nullable="false" />
+          <Property Name="id_servicio" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="concepto">
+          <Key>
+            <PropertyRef Name="id_concepto" />
+          </Key>
+          <Property Name="id_concepto" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cod_concepto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_concepto_padre" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="descripcion_concepto" Type="text" />
+          <Property Name="nivel_concepto" Type="int4" Nullable="false" />
+          <Property Name="id_tipo_concepto" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="id_naturaleza_concepto" Type="int4" />
+          <Property Name="flag_ref_normativa" Type="bool" />
+          <Property Name="concepto_cargado" Type="bool" Nullable="false" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="varchar" MaxLength="10" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="concepto_formato">
+          <Key>
+            <PropertyRef Name="id_concepto_formato" />
+          </Key>
+          <Property Name="id_concepto_formato" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_formato" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="id_concepto" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="flag_concepto_remunerado" Type="int4" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="edc">
+          <Key>
+            <PropertyRef Name="id_edc" />
+          </Key>
+          <Property Name="id_edc" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cod_edc" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre_edc" Type="text" Nullable="false" />
+          <Property Name="descripcion_edc" Type="text" Nullable="false" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="edc_formato">
+          <Key>
+            <PropertyRef Name="id_edc_formato" />
+          </Key>
+          <Property Name="id_edc_formato" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_formato" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="id_edc" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+          <Property Name="id_edc_padre" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="edc_reconocido" Type="int4" />
+        </EntityType>
+        <EntityType Name="empresa">
+          <Key>
+            <PropertyRef Name="id_empresa" />
+          </Key>
+          <Property Name="id_empresa" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cod_empresa" Type="int8" />
+          <Property Name="nit_empresa" Type="int8" />
+          <Property Name="dv_nit_empresa" Type="int4" Nullable="false" />
+          <Property Name="nombre_empresa" Type="text" Nullable="false" />
+          <Property Name="sigla_empresa" Type="text" />
+          <Property Name="cod_sui_empresa" Type="text" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empresa_actividad">
+          <Key>
+            <PropertyRef Name="id_empresa_actividad" />
+          </Key>
+          <Property Name="id_empresa_actividad" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_empresa" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="id_actividad" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="varchar" MaxLength="10" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="formato">
+          <Key>
+            <PropertyRef Name="id_formato" />
+          </Key>
+          <Property Name="id_formato" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cod_formato" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre_formato" Type="text" />
+          <Property Name="flag_formato_div" Type="bool" />
+          <Property Name="tipo_formato" Type="int4" />
+          <Property Name="id_actividad" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="historial_aom">
+          <Key>
+            <PropertyRef Name="id_historial_aom" />
+          </Key>
+          <Property Name="id_historial_aom" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_empresa" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="id_formato" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="id_tramo" Type="varchar" MaxLength="50" />
+          <Property Name="nombre_original_archivo_aom" Type="text" />
+          <Property Name="nombre_archivo_aom" Type="text" />
+          <Property Name="anio_aom" Type="int4" />
+          <Property Name="extension_aom" Type="varchar" MaxLength="50" />
+          <Property Name="tamanio_aom" Type="varchar" MaxLength="50" />
+          <Property Name="usuario_carga" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha_carga" Type="timestamp" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="timestamp" />
+          <Property Name="ruta_aom" Type="text" />
+          <Property Name="error" Type="varchar" MaxLength="30000" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="log_auditoria">
+          <Key>
+            <PropertyRef Name="id_log" />
+          </Key>
+          <Property Name="id_log" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tabla" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_registro_tabla" Type="int8" Nullable="false" />
+          <Property Name="columna_afectada" Type="varchar" MaxLength="200" />
+          <Property Name="valor_antiguo" Type="varchar" MaxLength="300" />
+          <Property Name="valor_nuevo" Type="varchar" MaxLength="100" />
+          <Property Name="fecha" Type="timestamp" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="naturaleza_concepto">
+          <Key>
+            <PropertyRef Name="id_naturaleza_concepto" />
+          </Key>
+          <Property Name="id_naturaleza_concepto" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="desc_naturaleza" Type="bpchar" MaxLength="50" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permiso">
+          <Key>
+            <PropertyRef Name="id_permiso" />
+          </Key>
+          <Property Name="id_permiso" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="desc_permiso" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="activo" Type="bool" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_rol" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="role_permiso">
+          <Key>
+            <PropertyRef Name="id_role_permiso" />
+          </Key>
+          <Property Name="id_role_permiso" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_role" Type="int8" Nullable="false" />
+          <Property Name="id_permiso" Type="int8" Nullable="false" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="servicio">
+          <Key>
+            <PropertyRef Name="id_servicio" />
+          </Key>
+          <Property Name="id_servicio" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cod_servicio" Type="int4" Nullable="false" />
+          <Property Name="nombre_servicio" Type="text" Nullable="false" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_accion">
+          <Key>
+            <PropertyRef Name="id_tipo_accion" />
+          </Key>
+          <Property Name="id_tipo_accion" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion_tipo_accion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="varchar" MaxLength="10" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_concepto">
+          <Key>
+            <PropertyRef Name="id_tipo_concepto" />
+          </Key>
+          <Property Name="id_tipo_concepto" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="des_tipo_concepto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tramo">
+          <Key>
+            <PropertyRef Name="id_tramo" />
+          </Key>
+          <Property Name="id_tramo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion_tramo" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="timestamp" />
+          <Property Name="usuario_actualizacion" Type="varchar" MaxLength="10" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contrasena" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="correo_electronico" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_empresa" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="id_rol" Type="int8" Nullable="false" />
+          <Property Name="nombre_persona" Type="varchar" MaxLength="100" />
+          <Property Name="identificacion_persona" Type="varchar" MaxLength="100" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_accion_empresa">
+          <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+          <End Role="accion" Type="Self.accion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="id_empresa" />
+            </Principal>
+            <Dependent Role="accion">
+              <PropertyRef Name="id_empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_accion_tipo_accion">
+          <End Role="tipo_accion" Type="Self.tipo_accion" Multiplicity="1" />
+          <End Role="accion" Type="Self.accion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_accion">
+              <PropertyRef Name="id_tipo_accion" />
+            </Principal>
+            <Dependent Role="accion">
+              <PropertyRef Name="id_tipo_accion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_actividad_servicio">
+          <End Role="servicio" Type="Self.servicio" Multiplicity="1" />
+          <End Role="actividad" Type="Self.actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicio">
+              <PropertyRef Name="id_servicio" />
+            </Principal>
+            <Dependent Role="actividad">
+              <PropertyRef Name="id_servicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_concepto_concepto">
+          <End Role="concepto" Type="Self.concepto" Multiplicity="0..1" />
+          <End Role="concepto1" Type="Self.concepto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concepto">
+              <PropertyRef Name="id_concepto" />
+            </Principal>
+            <Dependent Role="concepto1">
+              <PropertyRef Name="id_concepto_padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_concepto_formato_concepto">
+          <End Role="concepto" Type="Self.concepto" Multiplicity="1" />
+          <End Role="concepto_formato" Type="Self.concepto_formato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concepto">
+              <PropertyRef Name="id_concepto" />
+            </Principal>
+            <Dependent Role="concepto_formato">
+              <PropertyRef Name="id_concepto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_concepto_formato_formato">
+          <End Role="formato" Type="Self.formato" Multiplicity="1" />
+          <End Role="concepto_formato" Type="Self.concepto_formato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formato">
+              <PropertyRef Name="id_formato" />
+            </Principal>
+            <Dependent Role="concepto_formato">
+              <PropertyRef Name="id_formato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_concepto_naturaleza_concepto">
+          <End Role="naturaleza_concepto" Type="Self.naturaleza_concepto" Multiplicity="0..1" />
+          <End Role="concepto" Type="Self.concepto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="naturaleza_concepto">
+              <PropertyRef Name="id_naturaleza_concepto" />
+            </Principal>
+            <Dependent Role="concepto">
+              <PropertyRef Name="id_naturaleza_concepto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_concepto_tipo_concepto">
+          <End Role="tipo_concepto" Type="Self.tipo_concepto" Multiplicity="0..1" />
+          <End Role="concepto" Type="Self.concepto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_concepto">
+              <PropertyRef Name="id_tipo_concepto" />
+            </Principal>
+            <Dependent Role="concepto">
+              <PropertyRef Name="id_tipo_concepto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_edc_formato_edc">
+          <End Role="edc" Type="Self.edc" Multiplicity="1" />
+          <End Role="edc_formato" Type="Self.edc_formato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="edc">
+              <PropertyRef Name="id_edc" />
+            </Principal>
+            <Dependent Role="edc_formato">
+              <PropertyRef Name="id_edc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_edc_formato_formato">
+          <End Role="formato" Type="Self.formato" Multiplicity="1" />
+          <End Role="edc_formato" Type="Self.edc_formato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formato">
+              <PropertyRef Name="id_formato" />
+            </Principal>
+            <Dependent Role="edc_formato">
+              <PropertyRef Name="id_formato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_empresa_actividad_actividad">
+          <End Role="actividad" Type="Self.actividad" Multiplicity="1" />
+          <End Role="empresa_actividad" Type="Self.empresa_actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="empresa_actividad">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_empresa_actividad_empresa">
+          <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+          <End Role="empresa_actividad" Type="Self.empresa_actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="id_empresa" />
+            </Principal>
+            <Dependent Role="empresa_actividad">
+              <PropertyRef Name="id_empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_formato_actividad">
+          <End Role="actividad" Type="Self.actividad" Multiplicity="1" />
+          <End Role="formato" Type="Self.formato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="formato">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_historial_aom_empresa">
+          <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+          <End Role="historial_aom" Type="Self.historial_aom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="id_empresa" />
+            </Principal>
+            <Dependent Role="historial_aom">
+              <PropertyRef Name="id_empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_historial_aom_formato">
+          <End Role="formato" Type="Self.formato" Multiplicity="0..1" />
+          <End Role="historial_aom" Type="Self.historial_aom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formato">
+              <PropertyRef Name="id_formato" />
+            </Principal>
+            <Dependent Role="historial_aom">
+              <PropertyRef Name="id_formato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_historial_aom_tramo">
+          <End Role="tramo" Type="Self.tramo" Multiplicity="0..1" />
+          <End Role="historial_aom" Type="Self.historial_aom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tramo">
+              <PropertyRef Name="id_tramo" />
+            </Principal>
+            <Dependent Role="historial_aom">
+              <PropertyRef Name="id_tramo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="role_permiso_permiso">
+          <End Role="permiso" Type="Self.permiso" Multiplicity="1" />
+          <End Role="role_permiso" Type="Self.role_permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permiso">
+              <PropertyRef Name="id_permiso" />
+            </Principal>
+            <Dependent Role="role_permiso">
+              <PropertyRef Name="id_permiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="role_permiso_role">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="role_permiso" Type="Self.role_permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="role_permiso">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_empresa">
+          <End Role="empresa" Type="Self.empresa" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="id_empresa" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="id_empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_role">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CREG_Analitica_AWSModelStoreContainer">
+          <EntitySet Name="accion" EntityType="Self.accion" Schema="public" store:Type="Tables" />
+          <EntitySet Name="actividad" EntityType="Self.actividad" Schema="public" store:Type="Tables" />
+          <EntitySet Name="concepto" EntityType="Self.concepto" Schema="public" store:Type="Tables" />
+          <EntitySet Name="concepto_formato" EntityType="Self.concepto_formato" Schema="public" store:Type="Tables" />
+          <EntitySet Name="edc" EntityType="Self.edc" Schema="public" store:Type="Tables" />
+          <EntitySet Name="edc_formato" EntityType="Self.edc_formato" Schema="public" store:Type="Tables" />
+          <EntitySet Name="empresa" EntityType="Self.empresa" Schema="public" store:Type="Tables" />
+          <EntitySet Name="empresa_actividad" EntityType="Self.empresa_actividad" Schema="public" store:Type="Tables" />
+          <EntitySet Name="formato" EntityType="Self.formato" Schema="public" store:Type="Tables" />
+          <EntitySet Name="historial_aom" EntityType="Self.historial_aom" Schema="public" store:Type="Tables" />
+          <EntitySet Name="log_auditoria" EntityType="Self.log_auditoria" Schema="public" store:Type="Tables" />
+          <EntitySet Name="naturaleza_concepto" EntityType="Self.naturaleza_concepto" Schema="public" store:Type="Tables" />
+          <EntitySet Name="permiso" EntityType="Self.permiso" Schema="public" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="public" store:Type="Tables" />
+          <EntitySet Name="role_permiso" EntityType="Self.role_permiso" Schema="public" store:Type="Tables" />
+          <EntitySet Name="servicio" EntityType="Self.servicio" Schema="public" store:Type="Tables" />
+          <EntitySet Name="tipo_accion" EntityType="Self.tipo_accion" Schema="public" store:Type="Tables" />
+          <EntitySet Name="tipo_concepto" EntityType="Self.tipo_concepto" Schema="public" store:Type="Tables" />
+          <EntitySet Name="tramo" EntityType="Self.tramo" Schema="public" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="public" store:Type="Tables" />
+          <AssociationSet Name="fk_accion_empresa" Association="Self.fk_accion_empresa">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="accion" EntitySet="accion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_accion_tipo_accion" Association="Self.fk_accion_tipo_accion">
+            <End Role="tipo_accion" EntitySet="tipo_accion" />
+            <End Role="accion" EntitySet="accion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_actividad_servicio" Association="Self.fk_actividad_servicio">
+            <End Role="servicio" EntitySet="servicio" />
+            <End Role="actividad" EntitySet="actividad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_concepto_concepto" Association="Self.fk_concepto_concepto">
+            <End Role="concepto" EntitySet="concepto" />
+            <End Role="concepto1" EntitySet="concepto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_concepto_formato_concepto" Association="Self.fk_concepto_formato_concepto">
+            <End Role="concepto" EntitySet="concepto" />
+            <End Role="concepto_formato" EntitySet="concepto_formato" />
+          </AssociationSet>
+          <AssociationSet Name="fk_concepto_formato_formato" Association="Self.fk_concepto_formato_formato">
+            <End Role="formato" EntitySet="formato" />
+            <End Role="concepto_formato" EntitySet="concepto_formato" />
+          </AssociationSet>
+          <AssociationSet Name="fk_concepto_naturaleza_concepto" Association="Self.fk_concepto_naturaleza_concepto">
+            <End Role="naturaleza_concepto" EntitySet="naturaleza_concepto" />
+            <End Role="concepto" EntitySet="concepto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_concepto_tipo_concepto" Association="Self.fk_concepto_tipo_concepto">
+            <End Role="tipo_concepto" EntitySet="tipo_concepto" />
+            <End Role="concepto" EntitySet="concepto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_edc_formato_edc" Association="Self.fk_edc_formato_edc">
+            <End Role="edc" EntitySet="edc" />
+            <End Role="edc_formato" EntitySet="edc_formato" />
+          </AssociationSet>
+          <AssociationSet Name="fk_edc_formato_formato" Association="Self.fk_edc_formato_formato">
+            <End Role="formato" EntitySet="formato" />
+            <End Role="edc_formato" EntitySet="edc_formato" />
+          </AssociationSet>
+          <AssociationSet Name="fk_empresa_actividad_actividad" Association="Self.fk_empresa_actividad_actividad">
+            <End Role="actividad" EntitySet="actividad" />
+            <End Role="empresa_actividad" EntitySet="empresa_actividad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_empresa_actividad_empresa" Association="Self.fk_empresa_actividad_empresa">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="empresa_actividad" EntitySet="empresa_actividad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_formato_actividad" Association="Self.fk_formato_actividad">
+            <End Role="actividad" EntitySet="actividad" />
+            <End Role="formato" EntitySet="formato" />
+          </AssociationSet>
+          <AssociationSet Name="fk_historial_aom_empresa" Association="Self.fk_historial_aom_empresa">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="historial_aom" EntitySet="historial_aom" />
+          </AssociationSet>
+          <AssociationSet Name="fk_historial_aom_formato" Association="Self.fk_historial_aom_formato">
+            <End Role="formato" EntitySet="formato" />
+            <End Role="historial_aom" EntitySet="historial_aom" />
+          </AssociationSet>
+          <AssociationSet Name="fk_historial_aom_tramo" Association="Self.fk_historial_aom_tramo">
+            <End Role="tramo" EntitySet="tramo" />
+            <End Role="historial_aom" EntitySet="historial_aom" />
+          </AssociationSet>
+          <AssociationSet Name="role_permiso_permiso" Association="Self.role_permiso_permiso">
+            <End Role="permiso" EntitySet="permiso" />
+            <End Role="role_permiso" EntitySet="role_permiso" />
+          </AssociationSet>
+          <AssociationSet Name="role_permiso_role" Association="Self.role_permiso_role">
+            <End Role="role" EntitySet="role" />
+            <End Role="role_permiso" EntitySet="role_permiso" />
+          </AssociationSet>
+          <AssociationSet Name="user_empresa" Association="Self.user_empresa">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="user_role" Association="Self.user_role">
+            <End Role="role" EntitySet="role" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CREG_Analitica_AWSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CREG_Analitica_AWSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accion" EntityType="CREG_Analitica_AWSModel.accion" />
+          <EntitySet Name="actividad" EntityType="CREG_Analitica_AWSModel.actividad" />
+          <EntitySet Name="concepto" EntityType="CREG_Analitica_AWSModel.concepto" />
+          <EntitySet Name="concepto_formato" EntityType="CREG_Analitica_AWSModel.concepto_formato" />
+          <EntitySet Name="edc" EntityType="CREG_Analitica_AWSModel.edc" />
+          <EntitySet Name="edc_formato" EntityType="CREG_Analitica_AWSModel.edc_formato" />
+          <EntitySet Name="empresa" EntityType="CREG_Analitica_AWSModel.empresa" />
+          <EntitySet Name="formato" EntityType="CREG_Analitica_AWSModel.formato" />
+          <EntitySet Name="log_auditoria" EntityType="CREG_Analitica_AWSModel.log_auditoria" />
+          <EntitySet Name="naturaleza_concepto" EntityType="CREG_Analitica_AWSModel.naturaleza_concepto" />
+          <EntitySet Name="servicio" EntityType="CREG_Analitica_AWSModel.servicio" />
+          <EntitySet Name="tipo_accion" EntityType="CREG_Analitica_AWSModel.tipo_accion" />
+          <EntitySet Name="tipo_concepto" EntityType="CREG_Analitica_AWSModel.tipo_concepto" />
+          <EntitySet Name="tramo" EntityType="CREG_Analitica_AWSModel.tramo" />
+          <AssociationSet Name="fk_accion_empresa" Association="CREG_Analitica_AWSModel.fk_accion_empresa">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="accion" EntitySet="accion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_accion_tipo_accion" Association="CREG_Analitica_AWSModel.fk_accion_tipo_accion">
+            <End Role="tipo_accion" EntitySet="tipo_accion" />
+            <End Role="accion" EntitySet="accion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_actividad_servicio" Association="CREG_Analitica_AWSModel.fk_actividad_servicio">
+            <End Role="servicio" EntitySet="servicio" />
+            <End Role="actividad" EntitySet="actividad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_formato_actividad" Association="CREG_Analitica_AWSModel.fk_formato_actividad">
+            <End Role="actividad" EntitySet="actividad" />
+            <End Role="formato" EntitySet="formato" />
+          </AssociationSet>
+          <AssociationSet Name="fk_concepto_concepto" Association="CREG_Analitica_AWSModel.fk_concepto_concepto">
+            <End Role="concepto" EntitySet="concepto" />
+            <End Role="concepto1" EntitySet="concepto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_concepto_formato_concepto" Association="CREG_Analitica_AWSModel.fk_concepto_formato_concepto">
+            <End Role="concepto" EntitySet="concepto" />
+            <End Role="concepto_formato" EntitySet="concepto_formato" />
+          </AssociationSet>
+          <AssociationSet Name="fk_concepto_naturaleza_concepto" Association="CREG_Analitica_AWSModel.fk_concepto_naturaleza_concepto">
+            <End Role="naturaleza_concepto" EntitySet="naturaleza_concepto" />
+            <End Role="concepto" EntitySet="concepto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_concepto_tipo_concepto" Association="CREG_Analitica_AWSModel.fk_concepto_tipo_concepto">
+            <End Role="tipo_concepto" EntitySet="tipo_concepto" />
+            <End Role="concepto" EntitySet="concepto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_concepto_formato_formato" Association="CREG_Analitica_AWSModel.fk_concepto_formato_formato">
+            <End Role="formato" EntitySet="formato" />
+            <End Role="concepto_formato" EntitySet="concepto_formato" />
+          </AssociationSet>
+          <AssociationSet Name="fk_edc_formato_edc" Association="CREG_Analitica_AWSModel.fk_edc_formato_edc">
+            <End Role="edc" EntitySet="edc" />
+            <End Role="edc_formato" EntitySet="edc_formato" />
+          </AssociationSet>
+          <AssociationSet Name="fk_edc_formato_formato" Association="CREG_Analitica_AWSModel.fk_edc_formato_formato">
+            <End Role="formato" EntitySet="formato" />
+            <End Role="edc_formato" EntitySet="edc_formato" />
+          </AssociationSet>
+          <EntitySet Name="permiso" EntityType="CREG_Analitica_AWSModel.permiso" />
+          <EntitySet Name="role" EntityType="CREG_Analitica_AWSModel.role" />
+          <EntitySet Name="role_permiso" EntityType="CREG_Analitica_AWSModel.role_permiso" />
+          <EntitySet Name="user" EntityType="CREG_Analitica_AWSModel.user" />
+          <AssociationSet Name="user_empresa" Association="CREG_Analitica_AWSModel.user_empresa">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="role_permiso_permiso" Association="CREG_Analitica_AWSModel.role_permiso_permiso">
+            <End Role="permiso" EntitySet="permiso" />
+            <End Role="role_permiso" EntitySet="role_permiso" />
+          </AssociationSet>
+          <AssociationSet Name="role_permiso_role" Association="CREG_Analitica_AWSModel.role_permiso_role">
+            <End Role="role" EntitySet="role" />
+            <End Role="role_permiso" EntitySet="role_permiso" />
+          </AssociationSet>
+          <AssociationSet Name="user_role" Association="CREG_Analitica_AWSModel.user_role">
+            <End Role="role" EntitySet="role" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <EntitySet Name="empresa_actividad" EntityType="CREG_Analitica_AWSModel.empresa_actividad" />
+          <AssociationSet Name="fk_empresa_actividad_actividad" Association="CREG_Analitica_AWSModel.fk_empresa_actividad_actividad">
+            <End Role="actividad" EntitySet="actividad" />
+            <End Role="empresa_actividad" EntitySet="empresa_actividad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_empresa_actividad_empresa" Association="CREG_Analitica_AWSModel.fk_empresa_actividad_empresa">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="empresa_actividad" EntitySet="empresa_actividad" />
+          </AssociationSet>
+          <EntitySet Name="historial_aom" EntityType="CREG_Analitica_AWSModel.historial_aom" />
+          <AssociationSet Name="fk_historial_aom_empresa" Association="CREG_Analitica_AWSModel.fk_historial_aom_empresa">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="historial_aom" EntitySet="historial_aom" />
+          </AssociationSet>
+          <AssociationSet Name="fk_historial_aom_formato" Association="CREG_Analitica_AWSModel.fk_historial_aom_formato">
+            <End Role="formato" EntitySet="formato" />
+            <End Role="historial_aom" EntitySet="historial_aom" />
+          </AssociationSet>
+          <AssociationSet Name="fk_historial_aom_tramo" Association="CREG_Analitica_AWSModel.fk_historial_aom_tramo">
+            <End Role="tramo" EntitySet="tramo" />
+            <End Role="historial_aom" EntitySet="historial_aom" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="accion">
+          <Key>
+            <PropertyRef Name="id_accion" />
+          </Key>
+          <Property Name="id_accion" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_empresa" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="id_tipo_accion" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="8000" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="empresa" Relationship="CREG_Analitica_AWSModel.fk_accion_empresa" FromRole="accion" ToRole="empresa" />
+          <NavigationProperty Name="tipo_accion" Relationship="CREG_Analitica_AWSModel.fk_accion_tipo_accion" FromRole="accion" ToRole="tipo_accion" />
+        </EntityType>
+        <EntityType Name="actividad">
+          <Key>
+            <PropertyRef Name="id_actividad" />
+          </Key>
+          <Property Name="id_actividad" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cod_actividad" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="des_actividad" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_servicio" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="servicio" Relationship="CREG_Analitica_AWSModel.fk_actividad_servicio" FromRole="actividad" ToRole="servicio" />
+          <NavigationProperty Name="formato" Relationship="CREG_Analitica_AWSModel.fk_formato_actividad" FromRole="actividad" ToRole="formato" />
+          <NavigationProperty Name="empresa_actividad" Relationship="CREG_Analitica_AWSModel.fk_empresa_actividad_actividad" FromRole="actividad" ToRole="empresa_actividad" />
+        </EntityType>
+        <EntityType Name="concepto">
+          <Key>
+            <PropertyRef Name="id_concepto" />
+          </Key>
+          <Property Name="id_concepto" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cod_concepto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_concepto_padre" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="descripcion_concepto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nivel_concepto" Type="Int32" Nullable="false" />
+          <Property Name="id_tipo_concepto" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="id_naturaleza_concepto" Type="Int32" />
+          <Property Name="flag_ref_normativa" Type="Boolean" />
+          <Property Name="concepto_cargado" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="concepto1" Relationship="CREG_Analitica_AWSModel.fk_concepto_concepto" FromRole="concepto" ToRole="concepto1" />
+          <NavigationProperty Name="concepto2" Relationship="CREG_Analitica_AWSModel.fk_concepto_concepto" FromRole="concepto1" ToRole="concepto" />
+          <NavigationProperty Name="concepto_formato" Relationship="CREG_Analitica_AWSModel.fk_concepto_formato_concepto" FromRole="concepto" ToRole="concepto_formato" />
+          <NavigationProperty Name="naturaleza_concepto" Relationship="CREG_Analitica_AWSModel.fk_concepto_naturaleza_concepto" FromRole="concepto" ToRole="naturaleza_concepto" />
+          <NavigationProperty Name="tipo_concepto" Relationship="CREG_Analitica_AWSModel.fk_concepto_tipo_concepto" FromRole="concepto" ToRole="tipo_concepto" />
+        </EntityType>
+        <EntityType Name="concepto_formato">
+          <Key>
+            <PropertyRef Name="id_concepto_formato" />
+          </Key>
+          <Property Name="id_concepto_formato" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_formato" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="id_concepto" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="flag_concepto_remunerado" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="concepto" Relationship="CREG_Analitica_AWSModel.fk_concepto_formato_concepto" FromRole="concepto_formato" ToRole="concepto" />
+          <NavigationProperty Name="formato" Relationship="CREG_Analitica_AWSModel.fk_concepto_formato_formato" FromRole="concepto_formato" ToRole="formato" />
+        </EntityType>
+        <EntityType Name="edc">
+          <Key>
+            <PropertyRef Name="id_edc" />
+          </Key>
+          <Property Name="id_edc" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cod_edc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre_edc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion_edc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="edc_formato" Relationship="CREG_Analitica_AWSModel.fk_edc_formato_edc" FromRole="edc" ToRole="edc_formato" />
+        </EntityType>
+        <EntityType Name="edc_formato">
+          <Key>
+            <PropertyRef Name="id_edc_formato" />
+          </Key>
+          <Property Name="id_edc_formato" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_formato" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="id_edc" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="id_edc_padre" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="edc" Relationship="CREG_Analitica_AWSModel.fk_edc_formato_edc" FromRole="edc_formato" ToRole="edc" />
+          <NavigationProperty Name="formato" Relationship="CREG_Analitica_AWSModel.fk_edc_formato_formato" FromRole="edc_formato" ToRole="formato" />
+          <Property Name="edc_reconocido" Type="Int32" />
+        </EntityType>
+        <EntityType Name="empresa">
+          <Key>
+            <PropertyRef Name="id_empresa" />
+          </Key>
+          <Property Name="id_empresa" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cod_empresa" Type="Int64" />
+          <Property Name="nit_empresa" Type="Int64" />
+          <Property Name="dv_nit_empresa" Type="Int32" Nullable="false" />
+          <Property Name="nombre_empresa" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sigla_empresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cod_sui_empresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="accion" Relationship="CREG_Analitica_AWSModel.fk_accion_empresa" FromRole="empresa" ToRole="accion" />
+          <NavigationProperty Name="user" Relationship="CREG_Analitica_AWSModel.user_empresa" FromRole="empresa" ToRole="user" />
+          <NavigationProperty Name="empresa_actividad" Relationship="CREG_Analitica_AWSModel.fk_empresa_actividad_empresa" FromRole="empresa" ToRole="empresa_actividad" />
+          <NavigationProperty Name="historial_aom" Relationship="CREG_Analitica_AWSModel.fk_historial_aom_empresa" FromRole="empresa" ToRole="historial_aom" />
+        </EntityType>
+        <EntityType Name="formato">
+          <Key>
+            <PropertyRef Name="id_formato" />
+          </Key>
+          <Property Name="id_formato" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cod_formato" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre_formato" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="flag_formato_div" Type="Boolean" />
+          <Property Name="tipo_formato" Type="Int32" />
+          <Property Name="id_actividad" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="actividad" Relationship="CREG_Analitica_AWSModel.fk_formato_actividad" FromRole="formato" ToRole="actividad" />
+          <NavigationProperty Name="concepto_formato" Relationship="CREG_Analitica_AWSModel.fk_concepto_formato_formato" FromRole="formato" ToRole="concepto_formato" />
+          <NavigationProperty Name="edc_formato" Relationship="CREG_Analitica_AWSModel.fk_edc_formato_formato" FromRole="formato" ToRole="edc_formato" />
+          <NavigationProperty Name="historial_aom" Relationship="CREG_Analitica_AWSModel.fk_historial_aom_formato" FromRole="formato" ToRole="historial_aom" />
+        </EntityType>
+        <EntityType Name="log_auditoria">
+          <Key>
+            <PropertyRef Name="id_log" />
+          </Key>
+          <Property Name="id_log" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tabla" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_registro_tabla" Type="Int64" Nullable="false" />
+          <Property Name="columna_afectada" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="valor_antiguo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="valor_nuevo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="naturaleza_concepto">
+          <Key>
+            <PropertyRef Name="id_naturaleza_concepto" />
+          </Key>
+          <Property Name="id_naturaleza_concepto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="desc_naturaleza" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="concepto" Relationship="CREG_Analitica_AWSModel.fk_concepto_naturaleza_concepto" FromRole="naturaleza_concepto" ToRole="concepto" />
+        </EntityType>
+        <EntityType Name="servicio">
+          <Key>
+            <PropertyRef Name="id_servicio" />
+          </Key>
+          <Property Name="id_servicio" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cod_servicio" Type="Int32" Nullable="false" />
+          <Property Name="nombre_servicio" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="actividad" Relationship="CREG_Analitica_AWSModel.fk_actividad_servicio" FromRole="servicio" ToRole="actividad" />
+        </EntityType>
+        <EntityType Name="tipo_accion">
+          <Key>
+            <PropertyRef Name="id_tipo_accion" />
+          </Key>
+          <Property Name="id_tipo_accion" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion_tipo_accion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="accion" Relationship="CREG_Analitica_AWSModel.fk_accion_tipo_accion" FromRole="tipo_accion" ToRole="accion" />
+        </EntityType>
+        <EntityType Name="tipo_concepto">
+          <Key>
+            <PropertyRef Name="id_tipo_concepto" />
+          </Key>
+          <Property Name="id_tipo_concepto" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="des_tipo_concepto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="concepto" Relationship="CREG_Analitica_AWSModel.fk_concepto_tipo_concepto" FromRole="tipo_concepto" ToRole="concepto" />
+        </EntityType>
+        <EntityType Name="tramo">
+          <Key>
+            <PropertyRef Name="id_tramo" />
+          </Key>
+          <Property Name="id_tramo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion_tramo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="historial_aom" Relationship="CREG_Analitica_AWSModel.fk_historial_aom_tramo" FromRole="tramo" ToRole="historial_aom" />
+        </EntityType>
+        <Association Name="fk_accion_empresa">
+          <End Type="CREG_Analitica_AWSModel.empresa" Role="empresa" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.accion" Role="accion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="id_empresa" />
+            </Principal>
+            <Dependent Role="accion">
+              <PropertyRef Name="id_empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_accion_tipo_accion">
+          <End Type="CREG_Analitica_AWSModel.tipo_accion" Role="tipo_accion" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.accion" Role="accion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_accion">
+              <PropertyRef Name="id_tipo_accion" />
+            </Principal>
+            <Dependent Role="accion">
+              <PropertyRef Name="id_tipo_accion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_actividad_servicio">
+          <End Type="CREG_Analitica_AWSModel.servicio" Role="servicio" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.actividad" Role="actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicio">
+              <PropertyRef Name="id_servicio" />
+            </Principal>
+            <Dependent Role="actividad">
+              <PropertyRef Name="id_servicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_formato_actividad">
+          <End Type="CREG_Analitica_AWSModel.actividad" Role="actividad" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.formato" Role="formato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="formato">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_concepto_concepto">
+          <End Type="CREG_Analitica_AWSModel.concepto" Role="concepto" Multiplicity="0..1" />
+          <End Type="CREG_Analitica_AWSModel.concepto" Role="concepto1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concepto">
+              <PropertyRef Name="id_concepto" />
+            </Principal>
+            <Dependent Role="concepto1">
+              <PropertyRef Name="id_concepto_padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_concepto_formato_concepto">
+          <End Type="CREG_Analitica_AWSModel.concepto" Role="concepto" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.concepto_formato" Role="concepto_formato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="concepto">
+              <PropertyRef Name="id_concepto" />
+            </Principal>
+            <Dependent Role="concepto_formato">
+              <PropertyRef Name="id_concepto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_concepto_naturaleza_concepto">
+          <End Type="CREG_Analitica_AWSModel.naturaleza_concepto" Role="naturaleza_concepto" Multiplicity="0..1" />
+          <End Type="CREG_Analitica_AWSModel.concepto" Role="concepto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="naturaleza_concepto">
+              <PropertyRef Name="id_naturaleza_concepto" />
+            </Principal>
+            <Dependent Role="concepto">
+              <PropertyRef Name="id_naturaleza_concepto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_concepto_tipo_concepto">
+          <End Type="CREG_Analitica_AWSModel.tipo_concepto" Role="tipo_concepto" Multiplicity="0..1" />
+          <End Type="CREG_Analitica_AWSModel.concepto" Role="concepto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_concepto">
+              <PropertyRef Name="id_tipo_concepto" />
+            </Principal>
+            <Dependent Role="concepto">
+              <PropertyRef Name="id_tipo_concepto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_concepto_formato_formato">
+          <End Type="CREG_Analitica_AWSModel.formato" Role="formato" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.concepto_formato" Role="concepto_formato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formato">
+              <PropertyRef Name="id_formato" />
+            </Principal>
+            <Dependent Role="concepto_formato">
+              <PropertyRef Name="id_formato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_edc_formato_edc">
+          <End Type="CREG_Analitica_AWSModel.edc" Role="edc" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.edc_formato" Role="edc_formato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="edc">
+              <PropertyRef Name="id_edc" />
+            </Principal>
+            <Dependent Role="edc_formato">
+              <PropertyRef Name="id_edc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_edc_formato_formato">
+          <End Type="CREG_Analitica_AWSModel.formato" Role="formato" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.edc_formato" Role="edc_formato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formato">
+              <PropertyRef Name="id_formato" />
+            </Principal>
+            <Dependent Role="edc_formato">
+              <PropertyRef Name="id_formato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="permiso">
+          <Key>
+            <PropertyRef Name="id_permiso" />
+          </Key>
+          <Property Name="id_permiso" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="desc_permiso" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <NavigationProperty Name="role_permiso" Relationship="CREG_Analitica_AWSModel.role_permiso_permiso" FromRole="permiso" ToRole="role_permiso" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_rol" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="role_permiso" Relationship="CREG_Analitica_AWSModel.role_permiso_role" FromRole="role" ToRole="role_permiso" />
+          <NavigationProperty Name="user" Relationship="CREG_Analitica_AWSModel.user_role" FromRole="role" ToRole="user" />
+        </EntityType>
+        <EntityType Name="role_permiso">
+          <Key>
+            <PropertyRef Name="id_role_permiso" />
+          </Key>
+          <Property Name="id_role_permiso" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_role" Type="Int64" Nullable="false" />
+          <Property Name="id_permiso" Type="Int64" Nullable="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="permiso" Relationship="CREG_Analitica_AWSModel.role_permiso_permiso" FromRole="role_permiso" ToRole="permiso" />
+          <NavigationProperty Name="role" Relationship="CREG_Analitica_AWSModel.role_permiso_role" FromRole="role_permiso" ToRole="role" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contrasena" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="correo_electronico" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_empresa" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="id_rol" Type="Int64" Nullable="false" />
+          <Property Name="nombre_persona" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="identificacion_persona" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="empresa" Relationship="CREG_Analitica_AWSModel.user_empresa" FromRole="user" ToRole="empresa" />
+          <NavigationProperty Name="role" Relationship="CREG_Analitica_AWSModel.user_role" FromRole="user" ToRole="role" />
+        </EntityType>
+        <Association Name="user_empresa">
+          <End Type="CREG_Analitica_AWSModel.empresa" Role="empresa" Multiplicity="0..1" />
+          <End Type="CREG_Analitica_AWSModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="id_empresa" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="id_empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="role_permiso_permiso">
+          <End Type="CREG_Analitica_AWSModel.permiso" Role="permiso" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.role_permiso" Role="role_permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permiso">
+              <PropertyRef Name="id_permiso" />
+            </Principal>
+            <Dependent Role="role_permiso">
+              <PropertyRef Name="id_permiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="role_permiso_role">
+          <End Type="CREG_Analitica_AWSModel.role" Role="role" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.role_permiso" Role="role_permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="role_permiso">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_role">
+          <End Type="CREG_Analitica_AWSModel.role" Role="role" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="empresa_actividad">
+          <Key>
+            <PropertyRef Name="id_empresa_actividad" />
+          </Key>
+          <Property Name="id_empresa_actividad" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_empresa" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="id_actividad" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="6" />
+          <Property Name="usuario_actualizacion" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="actividad" Relationship="CREG_Analitica_AWSModel.fk_empresa_actividad_actividad" FromRole="empresa_actividad" ToRole="actividad" />
+          <NavigationProperty Name="empresa" Relationship="CREG_Analitica_AWSModel.fk_empresa_actividad_empresa" FromRole="empresa_actividad" ToRole="empresa" />
+        </EntityType>
+        <Association Name="fk_empresa_actividad_actividad">
+          <End Type="CREG_Analitica_AWSModel.actividad" Role="actividad" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.empresa_actividad" Role="empresa_actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="empresa_actividad">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_empresa_actividad_empresa">
+          <End Type="CREG_Analitica_AWSModel.empresa" Role="empresa" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.empresa_actividad" Role="empresa_actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="id_empresa" />
+            </Principal>
+            <Dependent Role="empresa_actividad">
+              <PropertyRef Name="id_empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="historial_aom">
+          <Key>
+            <PropertyRef Name="id_historial_aom" />
+          </Key>
+          <Property Name="id_historial_aom" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_empresa" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="id_formato" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="id_tramo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre_original_archivo_aom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nombre_archivo_aom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="anio_aom" Type="Int32" />
+          <Property Name="extension_aom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tamanio_aom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="usuario_carga" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_carga" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="6" />
+          <Property Name="ruta_aom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="error" Type="String" MaxLength="30000" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="empresa" Relationship="CREG_Analitica_AWSModel.fk_historial_aom_empresa" FromRole="historial_aom" ToRole="empresa" />
+          <NavigationProperty Name="formato" Relationship="CREG_Analitica_AWSModel.fk_historial_aom_formato" FromRole="historial_aom" ToRole="formato" />
+          <NavigationProperty Name="tramo" Relationship="CREG_Analitica_AWSModel.fk_historial_aom_tramo" FromRole="historial_aom" ToRole="tramo" />
+        </EntityType>
+        <Association Name="fk_historial_aom_empresa">
+          <End Type="CREG_Analitica_AWSModel.empresa" Role="empresa" Multiplicity="1" />
+          <End Type="CREG_Analitica_AWSModel.historial_aom" Role="historial_aom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="id_empresa" />
+            </Principal>
+            <Dependent Role="historial_aom">
+              <PropertyRef Name="id_empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_historial_aom_formato">
+          <End Type="CREG_Analitica_AWSModel.formato" Role="formato" Multiplicity="0..1" />
+          <End Type="CREG_Analitica_AWSModel.historial_aom" Role="historial_aom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formato">
+              <PropertyRef Name="id_formato" />
+            </Principal>
+            <Dependent Role="historial_aom">
+              <PropertyRef Name="id_formato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_historial_aom_tramo">
+          <End Type="CREG_Analitica_AWSModel.tramo" Role="tramo" Multiplicity="0..1" />
+          <End Type="CREG_Analitica_AWSModel.historial_aom" Role="historial_aom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tramo">
+              <PropertyRef Name="id_tramo" />
+            </Principal>
+            <Dependent Role="historial_aom">
+              <PropertyRef Name="id_tramo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CREG_Analitica_AWSModelStoreContainer" CdmEntityContainer="CREG_Analitica_AWSEntities">
+          <EntitySetMapping Name="accion">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.accion">
+              <MappingFragment StoreEntitySet="accion">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_tipo_accion" ColumnName="id_tipo_accion" />
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+                <ScalarProperty Name="id_accion" ColumnName="id_accion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="actividad">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.actividad">
+              <MappingFragment StoreEntitySet="actividad">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_servicio" ColumnName="id_servicio" />
+                <ScalarProperty Name="des_actividad" ColumnName="des_actividad" />
+                <ScalarProperty Name="cod_actividad" ColumnName="cod_actividad" />
+                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="concepto">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.concepto">
+              <MappingFragment StoreEntitySet="concepto">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="concepto_cargado" ColumnName="concepto_cargado" />
+                <ScalarProperty Name="flag_ref_normativa" ColumnName="flag_ref_normativa" />
+                <ScalarProperty Name="id_naturaleza_concepto" ColumnName="id_naturaleza_concepto" />
+                <ScalarProperty Name="id_tipo_concepto" ColumnName="id_tipo_concepto" />
+                <ScalarProperty Name="nivel_concepto" ColumnName="nivel_concepto" />
+                <ScalarProperty Name="descripcion_concepto" ColumnName="descripcion_concepto" />
+                <ScalarProperty Name="id_concepto_padre" ColumnName="id_concepto_padre" />
+                <ScalarProperty Name="cod_concepto" ColumnName="cod_concepto" />
+                <ScalarProperty Name="id_concepto" ColumnName="id_concepto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="concepto_formato">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.concepto_formato">
+              <MappingFragment StoreEntitySet="concepto_formato">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="flag_concepto_remunerado" ColumnName="flag_concepto_remunerado" />
+                <ScalarProperty Name="id_concepto" ColumnName="id_concepto" />
+                <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+                <ScalarProperty Name="id_concepto_formato" ColumnName="id_concepto_formato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="edc">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.edc">
+              <MappingFragment StoreEntitySet="edc">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="descripcion_edc" ColumnName="descripcion_edc" />
+                <ScalarProperty Name="nombre_edc" ColumnName="nombre_edc" />
+                <ScalarProperty Name="cod_edc" ColumnName="cod_edc" />
+                <ScalarProperty Name="id_edc" ColumnName="id_edc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="edc_formato">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.edc_formato">
+              <MappingFragment StoreEntitySet="edc_formato">
+                <ScalarProperty Name="edc_reconocido" ColumnName="edc_reconocido" />
+                <ScalarProperty Name="id_edc_padre" ColumnName="id_edc_padre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_edc" ColumnName="id_edc" />
+                <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+                <ScalarProperty Name="id_edc_formato" ColumnName="id_edc_formato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empresa">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.empresa">
+              <MappingFragment StoreEntitySet="empresa">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="cod_sui_empresa" ColumnName="cod_sui_empresa" />
+                <ScalarProperty Name="sigla_empresa" ColumnName="sigla_empresa" />
+                <ScalarProperty Name="nombre_empresa" ColumnName="nombre_empresa" />
+                <ScalarProperty Name="dv_nit_empresa" ColumnName="dv_nit_empresa" />
+                <ScalarProperty Name="nit_empresa" ColumnName="nit_empresa" />
+                <ScalarProperty Name="cod_empresa" ColumnName="cod_empresa" />
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="formato">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.formato">
+              <MappingFragment StoreEntitySet="formato">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+                <ScalarProperty Name="tipo_formato" ColumnName="tipo_formato" />
+                <ScalarProperty Name="flag_formato_div" ColumnName="flag_formato_div" />
+                <ScalarProperty Name="nombre_formato" ColumnName="nombre_formato" />
+                <ScalarProperty Name="cod_formato" ColumnName="cod_formato" />
+                <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="log_auditoria">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.log_auditoria">
+              <MappingFragment StoreEntitySet="log_auditoria">
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="valor_nuevo" ColumnName="valor_nuevo" />
+                <ScalarProperty Name="valor_antiguo" ColumnName="valor_antiguo" />
+                <ScalarProperty Name="columna_afectada" ColumnName="columna_afectada" />
+                <ScalarProperty Name="id_registro_tabla" ColumnName="id_registro_tabla" />
+                <ScalarProperty Name="tabla" ColumnName="tabla" />
+                <ScalarProperty Name="id_log" ColumnName="id_log" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="naturaleza_concepto">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.naturaleza_concepto">
+              <MappingFragment StoreEntitySet="naturaleza_concepto">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="desc_naturaleza" ColumnName="desc_naturaleza" />
+                <ScalarProperty Name="id_naturaleza_concepto" ColumnName="id_naturaleza_concepto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servicio">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.servicio">
+              <MappingFragment StoreEntitySet="servicio">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="nombre_servicio" ColumnName="nombre_servicio" />
+                <ScalarProperty Name="cod_servicio" ColumnName="cod_servicio" />
+                <ScalarProperty Name="id_servicio" ColumnName="id_servicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_accion">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.tipo_accion">
+              <MappingFragment StoreEntitySet="tipo_accion">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="descripcion_tipo_accion" ColumnName="descripcion_tipo_accion" />
+                <ScalarProperty Name="id_tipo_accion" ColumnName="id_tipo_accion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_concepto">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.tipo_concepto">
+              <MappingFragment StoreEntitySet="tipo_concepto">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="des_tipo_concepto" ColumnName="des_tipo_concepto" />
+                <ScalarProperty Name="id_tipo_concepto" ColumnName="id_tipo_concepto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tramo">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.tramo">
+              <MappingFragment StoreEntitySet="tramo">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="descripcion_tramo" ColumnName="descripcion_tramo" />
+                <ScalarProperty Name="id_tramo" ColumnName="id_tramo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permiso">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.permiso">
+              <MappingFragment StoreEntitySet="permiso">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="desc_permiso" ColumnName="desc_permiso" />
+                <ScalarProperty Name="id_permiso" ColumnName="id_permiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="nombre_rol" ColumnName="nombre_rol" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role_permiso">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.role_permiso">
+              <MappingFragment StoreEntitySet="role_permiso">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="id_permiso" ColumnName="id_permiso" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="id_role_permiso" ColumnName="id_role_permiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="identificacion_persona" ColumnName="identificacion_persona" />
+                <ScalarProperty Name="nombre_persona" ColumnName="nombre_persona" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empresa_actividad">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.empresa_actividad">
+              <MappingFragment StoreEntitySet="empresa_actividad">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+                <ScalarProperty Name="id_empresa_actividad" ColumnName="id_empresa_actividad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="historial_aom">
+            <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.historial_aom">
+              <MappingFragment StoreEntitySet="historial_aom">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="error" ColumnName="error" />
+                <ScalarProperty Name="ruta_aom" ColumnName="ruta_aom" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="fecha_carga" ColumnName="fecha_carga" />
+                <ScalarProperty Name="usuario_carga" ColumnName="usuario_carga" />
+                <ScalarProperty Name="tamanio_aom" ColumnName="tamanio_aom" />
+                <ScalarProperty Name="extension_aom" ColumnName="extension_aom" />
+                <ScalarProperty Name="anio_aom" ColumnName="anio_aom" />
+                <ScalarProperty Name="nombre_archivo_aom" ColumnName="nombre_archivo_aom" />
+                <ScalarProperty Name="nombre_original_archivo_aom" ColumnName="nombre_original_archivo_aom" />
+                <ScalarProperty Name="id_tramo" ColumnName="id_tramo" />
+                <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+                <ScalarProperty Name="id_historial_aom" ColumnName="id_historial_aom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

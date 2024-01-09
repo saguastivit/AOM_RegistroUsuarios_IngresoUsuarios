@@ -1,0 +1,101 @@
+.top {
+    background-color: #3366CC;
+}
+
+footer {
+    padding: 2rem 0;
+    background: #3366CC;
+}
+
+.location-data {
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+
+
+/*Formulario index*/
+
+.main-section {
+    margin: 0 auto;
+    margin-top: 25%;
+    padding: 0;
+}
+
+.log-user-text {
+    color: #3366CC;
+}
+
+.form-container {
+    background: #f9f9f9 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 4px #0000001F;
+}
+
+.form-styles {
+    background: #eaeaea 0% 0% no-repeat padding-box;
+}
+
+.rem-pass {
+    color: red;
+}
+
+.btn-color {
+    background: #3366CC!important;
+    color: #fff!important;
+    cursor: pointer;
+}
+
+
+/*Formulario page2*/
+
+.blue-letter {
+    color: #3366CC;
+}
+
+.small-letter {
+    font-size: small;
+}
+
+.upload-files {
+    border: 1px dashed #e3e3e3;
+}
+
+.doc-selec {
+    background-color: #aeaeae!important;
+    color: #fff!important;
+    padding: 5px;
+}
+
+.padding-letter {
+    padding-top: 60px;
+}
+
+
+/*Formulario page3*/
+
+.uploaded-files {
+    border: 1px dashed #adadad;
+}
+
+.doc-selected {
+    background-color: #3366CC!important;
+    color: #fff!important;
+    padding: 5px;
+}
+
+.adjusted-text {
+    word-wrap: break-word;
+}
+
+.modal-final {
+    display: block!important;
+    background-color: rgb(0 0 0 / 0.7);
+}
+
+.modal-top {
+    top: 30%;
+}
+
+.fa-check {
+    color: #069169;
+    font-size: xxx-large;
+}

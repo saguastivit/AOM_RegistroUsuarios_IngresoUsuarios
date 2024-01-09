@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+
+<section class="cont-form">
+    <div class="container">
+        <div class="card">
+            <div class="row">
+                <div class="col-sm-10 offset-sm-1 col-lg-10 offset-lg-1">
+                    <form name="captura-datos">
+
+                        <app-info-activities [selected]='selected'></app-info-activities>
+
+                        <hr>
+                        <div class="row">
+                            <div *ngIf="activities.length > 1" class="col-sm-12">
+                                <app-tbl-activities (idSelected)="activitySelected($event)" [activities]='activities'></app-tbl-activities>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div *ngIf="awaiting" class="backCortinilla">
+    <div class="containerCortinilla">
+        <div class="imgCortinilla">
+            <img src="assets/images/load.gif" class="imgLoad" alt="load">
+        </div>
+    </div>
+</div>

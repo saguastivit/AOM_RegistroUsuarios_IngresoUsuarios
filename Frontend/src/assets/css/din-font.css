@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'd-dindin-bold';
+  src: url("../fuentes/d-din/d-din-bold-webfont.eot");
+  src: url("../fuentes/d-din/d-din-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fuentes/d-din/d-din-bold-webfont.woff2") format("woff2"), url("../fuentes/d-din/d-din-bold-webfont.woff") format("woff"), url("../fuentes/d-din/d-din-bold-webfont.ttf") format("truetype"), url("../fuentes/d-din/d-din-bold-webfont.svg#d-dindin-bold") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'd-dinregular';
+  src: url("../fuentes/d-din/d-din-webfont.eot");
+  src: url("../fuentes/d-din/d-din-webfont.eot?#iefix") format("embedded-opentype"), url("../fuentes/d-din/d-din-webfont.woff2") format("woff2"), url("../fuentes/d-din/d-din-webfont.woff") format("woff"), url("../fuentes/d-din/d-din-webfont.ttf") format("truetype"), url("../fuentes/d-din/d-din-webfont.svg#d-dinregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/*# sourceMappingURL=din-font.css.map */

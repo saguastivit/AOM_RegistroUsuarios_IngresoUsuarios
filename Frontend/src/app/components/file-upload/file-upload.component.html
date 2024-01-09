@@ -1,0 +1,185 @@
+<app-navbar></app-navbar>
+
+<section class="cont-form">
+    <div class="container">
+        <div class="card">
+            <div class="row">
+                <div class="col-sm-10 offset-sm-1 col-lg-10 offset-lg-1">
+                    <form name="captura-datos">
+                        <h2>Captura de datos</h2>
+                        <p>
+                            Con el fin de realizar un correcto cargue, este se habilitará solo cuando se haya seleccionado una empresa, para ello dispone de tres opciones, seleccionarla desde una lista desplegable, buscarla por el código SUI o buscarla por el NIT de la empresa.
+
+                        </p>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Escoger empresa</label>
+                                    <!-- <select [(ngModel)]="opcionSeleccionado" name="empresas" id="empresas" class="form-control" (change)="loadCompany(sui, nit, fileDropRef, fileDropRef2)">
+                                        <option value="0">-- Seleccione una Empresa --</option>
+                                        <option [value]="company.cod_empresa" *ngFor="let company of businnes">{{company.nombre_empresa}}</option>
+                                    </select> -->
+
+                                    <ng-multiselect-dropdown id="empresas" name="empresas" [placeholder]="'Empresas'" [data]="businnes" [settings]="dropdownSettings" [(ngModel)]="opcionSeleccionado" (onSelect)="loadCompany(sui, nit, fileDropRef, fileDropRef2)" (onDeSelect)="onDeSelect(sui, nit, fileDropRef, fileDropRef2)">
+                                    </ng-multiselect-dropdown>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>SUI</label>
+                                    <input type="text" class="form-control" id="sui" #sui placeholder="Buscar por Sui" (keyup)="loadCompanysui(sui, nit, fileDropRef, fileDropRef2)">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>NIT</label>
+                                    <input type="text" class="form-control" id="nit" #nit placeholder="Buscar por Nit" (keyup)="loadCompanynit(sui, nit, fileDropRef, fileDropRef2)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-sm-10 offset-sm-1 col-lg-10 offset-lg-1">
+                                <div class="form-group">
+                                    <label>Subir archivos
+                                        <span class="tittleSpan">
+                                            {{ empresaSeleccionada }}
+                                        </span>
+                                    </label>
+                                    <div class="upload-files bg-white text-center text-muted p-5 dropzone" (fileDropped)="onFileDropped($event)">
+                                        <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" [disabled]="disabled" />
+                                        <p>
+                                            <img src="assets/images/ico-dragdoc.svg">
+                                            <br />Arrastra y suelta los archivos aquí
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="group-btn text-right">
+                                    <div class="text-center dropzone btn btn-uno">
+                                        <input type="file" #fileDropRef2 id="fileDropRef2" multiple (change)="fileBrowseHandler($event)" [disabled]="disabled" /> Seleccione documento <i class="fas fa-file-upload"></i>
+                                    </div>
+                                    <button type="button" class="btn btn-uno" (click)="loadFiles(modalCargar)">
+                                        Cargar 
+                                    </button>
+                                    <button class="btn btn-dos" (click)="refresh(sui, nit, fileDropRef, fileDropRef2)">Limpiar </button>
+                                    <p class="small permitidos">{{ formatosPermitidos }}</p>
+                                    <p class="small">.xmls, .xlsx, tamaño límite ninguno</p>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-left">Archivo</th>
+                                                <th>Peso</th>
+                                                <th>Eliminar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let file of files;let indice=index">
+                                                <td class="text-left">{{ file.name }}</td>
+                                                <td>{{ file.size }} KB</td>
+                                                <!-- {{ progressInfo.percentage }} -->
+                                                <td><a role="button" (click)="deleteFile(indice)"><i class="fas fa-trash-alt"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<ng-template #modalCargar class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+    <div *ngIf="confirmacion">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalCargar">
+                Confirmar carga
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            los archivos estan listos para ser procesados, valide las observaciones de los archivos antes de ser cargados.
+            <div class="table-responsive">
+                <table class="table table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Archivo</th>
+                            <th>Observacion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let file of filesValidate;let indice=index">
+                            <td class="text-left">{{ file.formato }} - {{ file.anio}}</td>
+                            <td>{{ file.msg }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button *ngIf="continuar" type="button" class="btn btn-success" (click)="uploadFiles(modalCargar)">Continuar</button>
+            <button type="button" class="btn btn-warning" (click)="modalRef.hide()" data-dismiss="modal">Verificar</button>
+        </div>
+    </div>
+
+    <div *ngIf="!confirmacion">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+                Resultado de las cargas
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+                        <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div *ngIf="load" class="container">
+            <img src="assets/images/load.gif" class="imgLoad" alt="load">
+        </div>
+        <div *ngIf="!load" class="modal-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Formato</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let service of serviceResponse">
+                            <td>{{ service.name }}</td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let error of service.error">
+                                        <p>
+                                            {{ error }}
+                                        </p>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="!load" class="modal-footer">
+            <button type="button" class="btn btn-uno" data-dismiss="modal" (click)="modalRef.hide(); refresh(sui, nit, fileDropRef, fileDropRef2)">Finalizar</button>
+        </div>
+    </div>
+</ng-template>
+
+<script type="text/javascript">
+    var urlMenu = document.getElementById("empresas");
+    urlMenu.onchange = function() {
+        var opcionUsuario = this.options[this.selectedIndex];
+        if (opcionUsuario.value != "vacio") {
+            window.open(opcionUsuario.value)
+        }
+    }
+</script>

@@ -1,0 +1,44 @@
+<section class="miga-pan">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/files"><i class="fas fa-home"></i> Inicio</a></li>
+                        <li class="breadcrumb-item" aria-current="page">
+                            <a routerLink="/files">Captura de datos</a>
+                        </li>
+                        <li *ngIf="usuarioSession.id_rol == 1" class="breadcrumb-item" aria-current="page">
+                            <a routerLink="/actividades">Actividades</a>
+                        </li>
+                        <li *ngIf="usuarioSession.id_rol == 1" class="breadcrumb-item" aria-current="page">
+                            <a routerLink="/empresas">Empresas</a>
+                        </li>
+                        <li *ngIf="usuarioSession.id_rol == 1" class="breadcrumb-item" aria-current="page">
+                            <a routerLink="/formatos">Formatos</a>
+                        </li>
+                        <li *ngIf="usuarioSession.id_rol == 1" class="breadcrumb-item" aria-current="page">
+                            <a routerLink="/conceptos">Conceptos</a>
+                        </li>
+                        <li *ngIf="usuarioSession.id_rol == 1" class="breadcrumb-item" aria-current="page">
+                            <a routerLink="/edc">Estructura de costos</a>
+                        </li>
+                        <li *ngIf="usuarioSession.id_rol == 1" class="breadcrumb-item" aria-current="page">
+                            <a routerLink="/usuarios">Usuarios</a>
+                        </li>
+
+
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-sm-4">
+                <div class="usuario text-right">
+                    <p>
+                        {{ usuarioSession.usuario}} | <a [routerLink]="" (click)="logout()"><i class="fas fa-sign-out-alt" title="Salir"></i> Salir</a><br />
+                        <span>Fecha de ingreso: {{ dateNow }}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,105 @@
+<h2>Datos a capturar</h2>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>Código formato</label>
+            <input type="text" class="form-control" id="cod" #cod placeholder="Código formato" value="{{selected.cod_formato !=null ? selected.cod_formato : ''}}" (keyup)=updateFile(cod)>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Formato</label>
+            <input type="text" class="form-control" id="fort" #fort placeholder="Formato" value="{{selected.nombre_formato !=null ? selected.nombre_formato : ''}}" (keyup)=updateFile(fort)>
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <div class="form-group">
+            <label>Actividad</label>
+            <ng-multiselect-dropdown id="actividades" #actividades name="actividades" [placeholder]="'Actividades'" [data]="activities" [settings]="dropdownSettings" [(ngModel)]="opcionesSeleccionadas">
+
+            </ng-multiselect-dropdown>
+        </div>
+    </div>
+    <!-- <div class="col-sm-4">
+        <div class="form-group">
+            <label>Actividades</label>
+            <ng-multiselect-dropdown id="act" name="act" [placeholder]="'Servicios'" [data]="services" [settings]="dropdownSettings" [(ngModel)]="opcionesSeleccionadas">
+
+            </ng-multiselect-dropdown>
+        </div>
+    </div> -->
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>Formato con tramos</label>
+            <div class="form-group switch-button">
+                <input type="checkbox" name="switch-button " id="tram" #tram class="switch-button__checkbox " [checked]="selected.flag_formato_div" (click)="updateFile(tram)">
+                <label for="tram" class="switch-button__label "></label>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Formato base</label>
+            <div class="form-group switch-button">
+                <input type="checkbox" name="switch-button " id="base" #base class="switch-button__checkbox " [checked]="selected.tipo_formato" (click)="updateFile(base)">
+                <label for="base" class="switch-button__label "></label>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="actualizar" class="col-sm-4">
+        <label>Estado</label>
+        <div class="form-group switch-button ">
+            <input type="checkbox" name="switch-button" id="{{ selected.id_formato }}" #status class="switch-button__checkbox" [checked]="selected.activo" (click)="updateFile(status)">
+            <label for="{{ selected.id_formato }}" class="switch-button__label"></label>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-end ">
+    <div class="col-2 " *ngIf="!actualizar ">
+        <button class="btn btn-uno " (click)="validateFormat('crear') ">Crear</button>
+    </div>
+    <div *ngIf="actualizar " class="col-2 ">
+        <button class="btn btn-uno " (click)="changeFormat(modalActualizar) ">Actualizar</button>
+    </div>
+    <div class="col-2 ">
+        <button class="btn btn-dos " (click)="cleanForm()">Limpiar</button>
+    </div>
+</div>
+
+
+
+<ng-template #modalActualizar class="modal fade " data-backdrop="static " data-keyboard="false " tabindex="-1 " aria-labelledby="staticBackdropLabel " aria-hidden="true ">
+    <div>
+        <div class="modal-header ">
+            <h5 class="modal-title " id="modalActualizar">
+                Actualizar datos
+            </h5>
+            <button type="button " class="close " data-dismiss="modal " aria-label="Close " (click)="modalRef.hide() ">
+                <span aria-hidden="true ">&times;</span>
+            </button>
+        </div>
+        <div *ngIf="!actualizar " class="modal-body ">
+            {{ estateFormat }}
+        </div>
+        <div *ngIf="actualizar " class="modal-body ">
+            {{ estateFormat }}
+        </div>
+        <div *ngIf="actualizar " class="modal-footer ">
+            <button type="button " class="btn btn-success " (click)="validateFormat('actualizar'); modalRef.hide() ">Continuar</button>
+            <!-- (click)="uploadFiles(modalCargar) " -->
+            <button type="button " class="btn btn-warning " (click)="modalRef.hide() " data-dismiss="modal ">Cancelar</button>
+        </div>
+    </div>
+</ng-template>
+
+
+<div *ngIf="awaiting" class="backCortinilla">
+    <div class="containerCortinilla">
+        <div class="imgCortinilla">
+            <img src="assets/images/load.gif" class="imgLoad" alt="load">
+        </div>
+    </div>
+</div>

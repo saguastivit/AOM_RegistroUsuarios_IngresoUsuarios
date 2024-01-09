@@ -1,0 +1,225 @@
+
+
+<h2>Datos a capturar</h2>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>NIT</label>
+            <div class="row">
+                <div class="col-8">
+                    <input type="number" class="form-control" id="nit" #nit placeholder="NIT" value="{{selected.nit_empresa !=null ? selected.nit_empresa : ''}}" (keyup)=updateFile(nit)>
+                </div>
+                <div class="col-4">
+                    <input type="number" class="form-control" id="nitdv" #nitdv placeholder="0" value="{{selected.dv_nit_empresa !=null ? selected.dv_nit_empresa : ''}}" (keyup)=updateFile(nitdv)>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-6">
+                    <label>SUI</label>
+                    <input type="text" class="form-control" id="sui" #sui placeholder="Codigo SUI" value="{{selected.cod_sui_empresa !=null ? selected.cod_sui_empresa : ''}}" (keyup)=updateFile(sui)>
+                </div>
+                <div class="col-6">
+                    <label>Código CREG</label>
+                    <input type="text" class="form-control" id="cod" #cod placeholder="Código CREG" value="{{selected.cod_empresa !=null ? selected.cod_empresa : ''}}" (keyup)=updateFile(cod)>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Sigla</label>
+            <input type="text" class="form-control" id="sigla" #sigla placeholder="Sigla" value="{{selected.sigla_empresa !=null ? selected.sigla_empresa : ''}}" (keyup)=updateFile(sigla)>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Razón social</label>
+            <input type="text" class="form-control" id="rz" #rz placeholder="Razón social" value="{{selected.nombre_empresa !=null ? selected.nombre_empresa : ''}}" (keyup)=updateFile(rz)>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Actividades</label>
+            <ng-multiselect-dropdown id="actividades" #actividades name="actividades" [placeholder]="'Actividades'" [data]="activities" [settings]="dropdownSettings" [(ngModel)]="opcionesSeleccionadas">
+
+            </ng-multiselect-dropdown>
+        </div>
+    </div>
+
+    <div *ngIf="actualizar" class="col-sm-2 ">
+        <label>Estado</label>
+        <div class="form-group switch-button ">
+            <input type="checkbox" name="switch-button" id="{{ selected.id_empresa }}" #status class="switch-button__checkbox" [checked]="selected.activo" (click)="updateFile(status)">
+            <label for="{{ selected.id_empresa }}" class="switch-button__label"></label>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-end ">   
+    <div class="col-2 " *ngIf="!actualizar ">
+        <button class="btn btn-uno " (click)="insertCompany() ">Crear</button>
+    </div>
+    <div *ngIf="actualizar " class="col-2 ">
+        <button class="btn btn-uno " (click)="changeCompany(modalActualizar) ">Actualizar</button>
+    </div>
+    <div class="col-2 ">
+        <button class="btn btn-uno " (click)="syncCompany(modalSync)">Sincronizar</button>
+    </div>
+    <div class="col-2 ">
+        <button class="btn btn-dos " (click)="cleanForm()">Limpiar</button>
+    </div>
+</div>
+
+
+
+<ng-template #modalActualizar class="modal fade " data-backdrop="static " data-keyboard="false " tabindex="-1 " aria-labelledby="staticBackdropLabel " aria-hidden="true ">
+    <div>
+        <div class="modal-header ">
+            <h5 class="modal-title " id="modalActualizar">
+                Actualizar datos
+            </h5>
+            <button type="button " class="close " data-dismiss="modal " aria-label="Close " (click)="modalRef.hide() ">
+                <span aria-hidden="true ">&times;</span>
+            </button>
+        </div>
+        <div *ngIf="!actualizar " class="modal-body ">
+            {{ estateCompany }}
+        </div>
+        <div *ngIf="actualizar " class="modal-body ">
+            {{ estateCompany }}
+        </div>
+        <div *ngIf="actualizar " class="modal-footer ">
+            <button type="button " class="btn btn-success " (click)="updateCompany(); modalRef.hide() ">Continuar</button>
+            <!-- (click)="uploadFiles(modalCargar) " -->
+            <button type="button " class="btn btn-warning " (click)="modalRef.hide() " data-dismiss="modal ">Cancelar</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #modalSync class="modal fade" data-backdrop="static " data-keyboard="false " tabindex="-1 " aria-labelledby="staticBackdropLabel " aria-hidden="true ">
+    <div>
+        <div class="modal-header ">
+            <h5 class="modal-title " id="modalSync">
+                Sincronizar datos
+            </h5>
+            <button type="button " class="close " data-dismiss="modal " aria-label="Close " (click)="modalRef.hide() ">
+                <span aria-hidden="true ">&times;</span>
+            </button>
+        </div>
+        <div *ngIf="!FlagSyncBusiness" class="modal-body">
+            {{ estateSync }}
+            <div *ngIf="FlagSyncCort" class="imgCortinilla">
+                <img src="assets/images/load.gif" class="imgLoad" alt="load">
+            </div>
+        </div>
+
+        <div *ngIf="FlagSyncBusiness && !FlagSyncCort" class="modal-body">
+
+            <div>
+                <p>
+                    Registros sincronizados {{ businessSync.length }}, Registros no sincronizados {{ businessNoSync.length }}
+                </p>                
+             </div>
+
+             <ngb-accordion >
+                <ngb-panel *ngIf=" businessSync.length > 0 " title="Sincronizados">
+                    <ng-template ngbPanelContent>
+                        <div >
+                            <table class="table table-hover table-sm">
+                                <thead>
+                                    <tr>
+                                        <th> Id </th>
+                                        <th> Cod Creg </th>
+                                        <th> Cod SUI </th>
+                                        <th style="width: 100px;"> Nit </th>
+                                        <th> Nombre </th>
+                                        <th> Sigla </th>                                     
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let registro of businessSync">
+                                        <td> {{ registro.id_empresa }}</td>
+                                        <td> {{ registro.cod_empresa }}</td>
+                                        <td> {{ registro.cod_sui_empresa }}</td>
+                                        <td> {{ registro.nit_empresa }}-{{ registro.dv_nit_empresa }}</td>
+                                        <td> {{ registro.nombre_empresa }}</td>
+                                        <td> {{ registro.sigla_empresa }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel *ngIf=" businessNoSync.length > 0 " title="No Sincronizados">
+                    <ng-template ngbPanelContent>
+                        <div >
+                            <table class="table table-hover table-sm">
+                                <thead>
+                                    <tr>
+                                        <th> Cod Creg </th>
+                                        <th> Nit </th>
+                                        <th> Nombre </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let registro of businessNoSync">
+                                        <td> {{ registro.COD_EMPRESA }} </td>
+                                        <td> {{ registro.NIT_EMPRESA }}-{{ registro.DIV_NIT_EMPRESA }} </td>
+                                        <td> {{ registro.NOMBRE_EMPRESA }} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-template>
+                  </ngb-panel>
+            </ngb-accordion>
+
+           
+            
+        
+       
+        
+        
+            
+        
+</div>
+
+        <div *ngIf="!FlagSyncBusiness && !FlagSyncCort" class="modal-footer ">
+            <button type="button " class="btn btn-success " (click)="syncBusiness() ">Continuar</button>
+            <!-- (click)="uploadFiles(modalCargar) " -->
+            <button type="button " class="btn btn-warning " (click)="modalRef.hide() " data-dismiss="modal ">Cancelar</button>
+        </div>
+
+        <!-- este continuar debe refrescar la opcion para el sincronizar -->
+        <div *ngIf="FlagSyncBusiness" class="modal-footer ">
+            <button type="button " class="btn btn-success " (click)="modalRef.hide() ">Continuar</button>            
+        </div>
+
+        <!-- este finalizar debe refrescar las ltablas  -->
+        <!-- <div *ngIf="FlagSyncBusiness && (businessNoSync.length > 0 && businessSync.length > 0)" class="modal-footer ">
+            <button type="button " class="btn btn-success " (click)="modalRef.hide() ">Finalizar</button>            
+        </div> -->
+    </div>
+
+    
+
+    
+</ng-template>
+
+<div *ngIf="awaiting" class="backCortinilla">
+    <div class="containerCortinilla">
+        <div class="imgCortinilla">
+            <img src="assets/images/load.gif" class="imgLoad" alt="load">
+        </div>
+    </div>
+</div>
+
+
+
+
+

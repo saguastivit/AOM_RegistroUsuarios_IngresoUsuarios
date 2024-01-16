@@ -1,0 +1,613 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CREG_Analitica_AWSModel.Store" Provider="Npgsql" ProviderManifestToken="13.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="accion">
+    <Key>
+      <PropertyRef Name="id_accion" />
+    </Key>
+    <Property Name="id_accion" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="id_tipo_accion" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="varchar" MaxLength="8000" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="actividad">
+    <Key>
+      <PropertyRef Name="id_actividad" />
+    </Key>
+    <Property Name="id_actividad" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cod_actividad" Type="text" Nullable="false" />
+    <Property Name="des_actividad" Type="text" Nullable="false" />
+    <Property Name="id_servicio" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="concepto">
+    <Key>
+      <PropertyRef Name="id_concepto" />
+    </Key>
+    <Property Name="id_concepto" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cod_concepto" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_concepto_padre" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="descripcion_concepto" Type="text" />
+    <Property Name="nivel_concepto" Type="int4" Nullable="false" />
+    <Property Name="id_tipo_concepto" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="id_naturaleza_concepto" Type="int4" />
+    <Property Name="flag_ref_normativa" Type="bool" />
+    <Property Name="concepto_cargado" Type="bool" Nullable="false" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="varchar" MaxLength="10" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="concepto_formato">
+    <Key>
+      <PropertyRef Name="id_concepto_formato" />
+    </Key>
+    <Property Name="id_concepto_formato" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_formato" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="id_concepto" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="flag_concepto_remunerado" Type="int4" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="edc">
+    <Key>
+      <PropertyRef Name="id_edc" />
+    </Key>
+    <Property Name="id_edc" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cod_edc" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombre_edc" Type="text" Nullable="false" />
+    <Property Name="descripcion_edc" Type="text" Nullable="false" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="edc_formato">
+    <Key>
+      <PropertyRef Name="id_edc_formato" />
+    </Key>
+    <Property Name="id_edc_formato" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_formato" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="id_edc" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+    <Property Name="id_edc_padre" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="edc_reconocido" Type="int4" />
+  </EntityType>
+  <EntityType Name="empresa">
+    <Key>
+      <PropertyRef Name="id_empresa" />
+    </Key>
+    <Property Name="id_empresa" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cod_empresa" Type="int8" />
+    <Property Name="nit_empresa" Type="int8" />
+    <Property Name="dv_nit_empresa" Type="int4" Nullable="false" />
+    <Property Name="nombre_empresa" Type="text" Nullable="false" />
+    <Property Name="sigla_empresa" Type="text" />
+    <Property Name="cod_sui_empresa" Type="text" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="empresa_actividad">
+    <Key>
+      <PropertyRef Name="id_empresa_actividad" />
+    </Key>
+    <Property Name="id_empresa_actividad" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="id_actividad" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="varchar" MaxLength="10" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="formato">
+    <Key>
+      <PropertyRef Name="id_formato" />
+    </Key>
+    <Property Name="id_formato" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cod_formato" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombre_formato" Type="text" />
+    <Property Name="flag_formato_div" Type="bool" />
+    <Property Name="tipo_formato" Type="int4" />
+    <Property Name="id_actividad" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="historial_aom">
+    <Key>
+      <PropertyRef Name="id_historial_aom" />
+    </Key>
+    <Property Name="id_historial_aom" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="id_formato" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="id_tramo" Type="varchar" MaxLength="50" />
+    <Property Name="nombre_original_archivo_aom" Type="text" />
+    <Property Name="nombre_archivo_aom" Type="text" />
+    <Property Name="anio_aom" Type="int4" />
+    <Property Name="extension_aom" Type="varchar" MaxLength="50" />
+    <Property Name="tamanio_aom" Type="varchar" MaxLength="50" />
+    <Property Name="usuario_carga" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_carga" Type="timestamp" Nullable="false" />
+    <Property Name="fecha_modificacion" Type="timestamp" />
+    <Property Name="ruta_aom" Type="text" />
+    <Property Name="error" Type="varchar" MaxLength="30000" />
+    <Property Name="estado" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="log_auditoria">
+    <Key>
+      <PropertyRef Name="id_log" />
+    </Key>
+    <Property Name="id_log" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tabla" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_registro_tabla" Type="int8" Nullable="false" />
+    <Property Name="columna_afectada" Type="varchar" MaxLength="200" />
+    <Property Name="valor_antiguo" Type="varchar" MaxLength="300" />
+    <Property Name="valor_nuevo" Type="varchar" MaxLength="100" />
+    <Property Name="fecha" Type="timestamp" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="naturaleza_concepto">
+    <Key>
+      <PropertyRef Name="id_naturaleza_concepto" />
+    </Key>
+    <Property Name="id_naturaleza_concepto" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="desc_naturaleza" Type="bpchar" MaxLength="50" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="permiso">
+    <Key>
+      <PropertyRef Name="id_permiso" />
+    </Key>
+    <Property Name="id_permiso" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="desc_permiso" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="activo" Type="bool" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="id_role" />
+    </Key>
+    <Property Name="id_role" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_rol" Type="varchar" MaxLength="8000" Nullable="false" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="role_permiso">
+    <Key>
+      <PropertyRef Name="id_role_permiso" />
+    </Key>
+    <Property Name="id_role_permiso" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_role" Type="int8" Nullable="false" />
+    <Property Name="id_permiso" Type="int8" Nullable="false" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="servicio">
+    <Key>
+      <PropertyRef Name="id_servicio" />
+    </Key>
+    <Property Name="id_servicio" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cod_servicio" Type="int4" Nullable="false" />
+    <Property Name="nombre_servicio" Type="text" Nullable="false" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tipo_accion">
+    <Key>
+      <PropertyRef Name="id_tipo_accion" />
+    </Key>
+    <Property Name="id_tipo_accion" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion_tipo_accion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="varchar" MaxLength="10" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tipo_concepto">
+    <Key>
+      <PropertyRef Name="id_tipo_concepto" />
+    </Key>
+    <Property Name="id_tipo_concepto" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="des_tipo_concepto" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="bpchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="bpchar" MaxLength="10" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tramo">
+    <Key>
+      <PropertyRef Name="id_tramo" />
+    </Key>
+    <Property Name="id_tramo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcion_tramo" Type="varchar" MaxLength="100" />
+    <Property Name="fecha_creacion" Type="timestamp" Nullable="false" />
+    <Property Name="usuario_creacion" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="timestamp" />
+    <Property Name="usuario_actualizacion" Type="varchar" MaxLength="10" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="contrasena" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="correo_electronico" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_empresa" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="id_rol" Type="int8" Nullable="false" />
+    <Property Name="nombre_persona" Type="varchar" MaxLength="100" />
+    <Property Name="identificacion_persona" Type="varchar" MaxLength="100" />
+    <Property Name="activo" Type="bool" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_accion_empresa">
+    <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+    <End Role="accion" Type="Self.accion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresa">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="accion">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_accion_tipo_accion">
+    <End Role="tipo_accion" Type="Self.tipo_accion" Multiplicity="1" />
+    <End Role="accion" Type="Self.accion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipo_accion">
+        <PropertyRef Name="id_tipo_accion" />
+      </Principal>
+      <Dependent Role="accion">
+        <PropertyRef Name="id_tipo_accion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_actividad_servicio">
+    <End Role="servicio" Type="Self.servicio" Multiplicity="1" />
+    <End Role="actividad" Type="Self.actividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="servicio">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="actividad">
+        <PropertyRef Name="id_servicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_concepto_concepto">
+    <End Role="concepto" Type="Self.concepto" Multiplicity="0..1" />
+    <End Role="concepto1" Type="Self.concepto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="concepto">
+        <PropertyRef Name="id_concepto" />
+      </Principal>
+      <Dependent Role="concepto1">
+        <PropertyRef Name="id_concepto_padre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_concepto_formato_concepto">
+    <End Role="concepto" Type="Self.concepto" Multiplicity="1" />
+    <End Role="concepto_formato" Type="Self.concepto_formato" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="concepto">
+        <PropertyRef Name="id_concepto" />
+      </Principal>
+      <Dependent Role="concepto_formato">
+        <PropertyRef Name="id_concepto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_concepto_formato_formato">
+    <End Role="formato" Type="Self.formato" Multiplicity="1" />
+    <End Role="concepto_formato" Type="Self.concepto_formato" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="formato">
+        <PropertyRef Name="id_formato" />
+      </Principal>
+      <Dependent Role="concepto_formato">
+        <PropertyRef Name="id_formato" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_concepto_naturaleza_concepto">
+    <End Role="naturaleza_concepto" Type="Self.naturaleza_concepto" Multiplicity="0..1" />
+    <End Role="concepto" Type="Self.concepto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="naturaleza_concepto">
+        <PropertyRef Name="id_naturaleza_concepto" />
+      </Principal>
+      <Dependent Role="concepto">
+        <PropertyRef Name="id_naturaleza_concepto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_concepto_tipo_concepto">
+    <End Role="tipo_concepto" Type="Self.tipo_concepto" Multiplicity="0..1" />
+    <End Role="concepto" Type="Self.concepto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipo_concepto">
+        <PropertyRef Name="id_tipo_concepto" />
+      </Principal>
+      <Dependent Role="concepto">
+        <PropertyRef Name="id_tipo_concepto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_edc_formato_edc">
+    <End Role="edc" Type="Self.edc" Multiplicity="1" />
+    <End Role="edc_formato" Type="Self.edc_formato" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="edc">
+        <PropertyRef Name="id_edc" />
+      </Principal>
+      <Dependent Role="edc_formato">
+        <PropertyRef Name="id_edc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_edc_formato_formato">
+    <End Role="formato" Type="Self.formato" Multiplicity="1" />
+    <End Role="edc_formato" Type="Self.edc_formato" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="formato">
+        <PropertyRef Name="id_formato" />
+      </Principal>
+      <Dependent Role="edc_formato">
+        <PropertyRef Name="id_formato" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_empresa_actividad_actividad">
+    <End Role="actividad" Type="Self.actividad" Multiplicity="1" />
+    <End Role="empresa_actividad" Type="Self.empresa_actividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="actividad">
+        <PropertyRef Name="id_actividad" />
+      </Principal>
+      <Dependent Role="empresa_actividad">
+        <PropertyRef Name="id_actividad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_empresa_actividad_empresa">
+    <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+    <End Role="empresa_actividad" Type="Self.empresa_actividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresa">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="empresa_actividad">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_formato_actividad">
+    <End Role="actividad" Type="Self.actividad" Multiplicity="1" />
+    <End Role="formato" Type="Self.formato" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="actividad">
+        <PropertyRef Name="id_actividad" />
+      </Principal>
+      <Dependent Role="formato">
+        <PropertyRef Name="id_actividad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_historial_aom_empresa">
+    <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+    <End Role="historial_aom" Type="Self.historial_aom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresa">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="historial_aom">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_historial_aom_formato">
+    <End Role="formato" Type="Self.formato" Multiplicity="0..1" />
+    <End Role="historial_aom" Type="Self.historial_aom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="formato">
+        <PropertyRef Name="id_formato" />
+      </Principal>
+      <Dependent Role="historial_aom">
+        <PropertyRef Name="id_formato" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_historial_aom_tramo">
+    <End Role="tramo" Type="Self.tramo" Multiplicity="0..1" />
+    <End Role="historial_aom" Type="Self.historial_aom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tramo">
+        <PropertyRef Name="id_tramo" />
+      </Principal>
+      <Dependent Role="historial_aom">
+        <PropertyRef Name="id_tramo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="role_permiso_permiso">
+    <End Role="permiso" Type="Self.permiso" Multiplicity="1" />
+    <End Role="role_permiso" Type="Self.role_permiso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="permiso">
+        <PropertyRef Name="id_permiso" />
+      </Principal>
+      <Dependent Role="role_permiso">
+        <PropertyRef Name="id_permiso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="role_permiso_role">
+    <End Role="role" Type="Self.role" Multiplicity="1" />
+    <End Role="role_permiso" Type="Self.role_permiso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="id_role" />
+      </Principal>
+      <Dependent Role="role_permiso">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="user_empresa">
+    <End Role="empresa" Type="Self.empresa" Multiplicity="0..1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresa">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="user_role">
+    <End Role="role" Type="Self.role" Multiplicity="1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="id_role" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CREG_Analitica_AWSModelStoreContainer">
+    <EntitySet Name="accion" EntityType="Self.accion" Schema="public" store:Type="Tables" />
+    <EntitySet Name="actividad" EntityType="Self.actividad" Schema="public" store:Type="Tables" />
+    <EntitySet Name="concepto" EntityType="Self.concepto" Schema="public" store:Type="Tables" />
+    <EntitySet Name="concepto_formato" EntityType="Self.concepto_formato" Schema="public" store:Type="Tables" />
+    <EntitySet Name="edc" EntityType="Self.edc" Schema="public" store:Type="Tables" />
+    <EntitySet Name="edc_formato" EntityType="Self.edc_formato" Schema="public" store:Type="Tables" />
+    <EntitySet Name="empresa" EntityType="Self.empresa" Schema="public" store:Type="Tables" />
+    <EntitySet Name="empresa_actividad" EntityType="Self.empresa_actividad" Schema="public" store:Type="Tables" />
+    <EntitySet Name="formato" EntityType="Self.formato" Schema="public" store:Type="Tables" />
+    <EntitySet Name="historial_aom" EntityType="Self.historial_aom" Schema="public" store:Type="Tables" />
+    <EntitySet Name="log_auditoria" EntityType="Self.log_auditoria" Schema="public" store:Type="Tables" />
+    <EntitySet Name="naturaleza_concepto" EntityType="Self.naturaleza_concepto" Schema="public" store:Type="Tables" />
+    <EntitySet Name="permiso" EntityType="Self.permiso" Schema="public" store:Type="Tables" />
+    <EntitySet Name="role" EntityType="Self.role" Schema="public" store:Type="Tables" />
+    <EntitySet Name="role_permiso" EntityType="Self.role_permiso" Schema="public" store:Type="Tables" />
+    <EntitySet Name="servicio" EntityType="Self.servicio" Schema="public" store:Type="Tables" />
+    <EntitySet Name="tipo_accion" EntityType="Self.tipo_accion" Schema="public" store:Type="Tables" />
+    <EntitySet Name="tipo_concepto" EntityType="Self.tipo_concepto" Schema="public" store:Type="Tables" />
+    <EntitySet Name="tramo" EntityType="Self.tramo" Schema="public" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="public" store:Type="Tables" />
+    <AssociationSet Name="fk_accion_empresa" Association="Self.fk_accion_empresa">
+      <End Role="empresa" EntitySet="empresa" />
+      <End Role="accion" EntitySet="accion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_accion_tipo_accion" Association="Self.fk_accion_tipo_accion">
+      <End Role="tipo_accion" EntitySet="tipo_accion" />
+      <End Role="accion" EntitySet="accion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_actividad_servicio" Association="Self.fk_actividad_servicio">
+      <End Role="servicio" EntitySet="servicio" />
+      <End Role="actividad" EntitySet="actividad" />
+    </AssociationSet>
+    <AssociationSet Name="fk_concepto_concepto" Association="Self.fk_concepto_concepto">
+      <End Role="concepto" EntitySet="concepto" />
+      <End Role="concepto1" EntitySet="concepto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_concepto_formato_concepto" Association="Self.fk_concepto_formato_concepto">
+      <End Role="concepto" EntitySet="concepto" />
+      <End Role="concepto_formato" EntitySet="concepto_formato" />
+    </AssociationSet>
+    <AssociationSet Name="fk_concepto_formato_formato" Association="Self.fk_concepto_formato_formato">
+      <End Role="formato" EntitySet="formato" />
+      <End Role="concepto_formato" EntitySet="concepto_formato" />
+    </AssociationSet>
+    <AssociationSet Name="fk_concepto_naturaleza_concepto" Association="Self.fk_concepto_naturaleza_concepto">
+      <End Role="naturaleza_concepto" EntitySet="naturaleza_concepto" />
+      <End Role="concepto" EntitySet="concepto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_concepto_tipo_concepto" Association="Self.fk_concepto_tipo_concepto">
+      <End Role="tipo_concepto" EntitySet="tipo_concepto" />
+      <End Role="concepto" EntitySet="concepto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_edc_formato_edc" Association="Self.fk_edc_formato_edc">
+      <End Role="edc" EntitySet="edc" />
+      <End Role="edc_formato" EntitySet="edc_formato" />
+    </AssociationSet>
+    <AssociationSet Name="fk_edc_formato_formato" Association="Self.fk_edc_formato_formato">
+      <End Role="formato" EntitySet="formato" />
+      <End Role="edc_formato" EntitySet="edc_formato" />
+    </AssociationSet>
+    <AssociationSet Name="fk_empresa_actividad_actividad" Association="Self.fk_empresa_actividad_actividad">
+      <End Role="actividad" EntitySet="actividad" />
+      <End Role="empresa_actividad" EntitySet="empresa_actividad" />
+    </AssociationSet>
+    <AssociationSet Name="fk_empresa_actividad_empresa" Association="Self.fk_empresa_actividad_empresa">
+      <End Role="empresa" EntitySet="empresa" />
+      <End Role="empresa_actividad" EntitySet="empresa_actividad" />
+    </AssociationSet>
+    <AssociationSet Name="fk_formato_actividad" Association="Self.fk_formato_actividad">
+      <End Role="actividad" EntitySet="actividad" />
+      <End Role="formato" EntitySet="formato" />
+    </AssociationSet>
+    <AssociationSet Name="fk_historial_aom_empresa" Association="Self.fk_historial_aom_empresa">
+      <End Role="empresa" EntitySet="empresa" />
+      <End Role="historial_aom" EntitySet="historial_aom" />
+    </AssociationSet>
+    <AssociationSet Name="fk_historial_aom_formato" Association="Self.fk_historial_aom_formato">
+      <End Role="formato" EntitySet="formato" />
+      <End Role="historial_aom" EntitySet="historial_aom" />
+    </AssociationSet>
+    <AssociationSet Name="fk_historial_aom_tramo" Association="Self.fk_historial_aom_tramo">
+      <End Role="tramo" EntitySet="tramo" />
+      <End Role="historial_aom" EntitySet="historial_aom" />
+    </AssociationSet>
+    <AssociationSet Name="role_permiso_permiso" Association="Self.role_permiso_permiso">
+      <End Role="permiso" EntitySet="permiso" />
+      <End Role="role_permiso" EntitySet="role_permiso" />
+    </AssociationSet>
+    <AssociationSet Name="role_permiso_role" Association="Self.role_permiso_role">
+      <End Role="role" EntitySet="role" />
+      <End Role="role_permiso" EntitySet="role_permiso" />
+    </AssociationSet>
+    <AssociationSet Name="user_empresa" Association="Self.user_empresa">
+      <End Role="empresa" EntitySet="empresa" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+    <AssociationSet Name="user_role" Association="Self.user_role">
+      <End Role="role" EntitySet="role" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

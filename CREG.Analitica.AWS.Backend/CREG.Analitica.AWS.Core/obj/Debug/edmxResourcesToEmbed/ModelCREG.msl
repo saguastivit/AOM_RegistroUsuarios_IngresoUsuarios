@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CREG_Analitica_AWSModelStoreContainer" CdmEntityContainer="CREG_Analitica_AWSEntities">
+    <EntitySetMapping Name="accion">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.accion">
+        <MappingFragment StoreEntitySet="accion">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_tipo_accion" ColumnName="id_tipo_accion" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_accion" ColumnName="id_accion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="actividad">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.actividad">
+        <MappingFragment StoreEntitySet="actividad">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_servicio" ColumnName="id_servicio" />
+          <ScalarProperty Name="des_actividad" ColumnName="des_actividad" />
+          <ScalarProperty Name="cod_actividad" ColumnName="cod_actividad" />
+          <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="concepto">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.concepto">
+        <MappingFragment StoreEntitySet="concepto">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="concepto_cargado" ColumnName="concepto_cargado" />
+          <ScalarProperty Name="flag_ref_normativa" ColumnName="flag_ref_normativa" />
+          <ScalarProperty Name="id_naturaleza_concepto" ColumnName="id_naturaleza_concepto" />
+          <ScalarProperty Name="id_tipo_concepto" ColumnName="id_tipo_concepto" />
+          <ScalarProperty Name="nivel_concepto" ColumnName="nivel_concepto" />
+          <ScalarProperty Name="descripcion_concepto" ColumnName="descripcion_concepto" />
+          <ScalarProperty Name="id_concepto_padre" ColumnName="id_concepto_padre" />
+          <ScalarProperty Name="cod_concepto" ColumnName="cod_concepto" />
+          <ScalarProperty Name="id_concepto" ColumnName="id_concepto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="concepto_formato">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.concepto_formato">
+        <MappingFragment StoreEntitySet="concepto_formato">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="flag_concepto_remunerado" ColumnName="flag_concepto_remunerado" />
+          <ScalarProperty Name="id_concepto" ColumnName="id_concepto" />
+          <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+          <ScalarProperty Name="id_concepto_formato" ColumnName="id_concepto_formato" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="edc">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.edc">
+        <MappingFragment StoreEntitySet="edc">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="descripcion_edc" ColumnName="descripcion_edc" />
+          <ScalarProperty Name="nombre_edc" ColumnName="nombre_edc" />
+          <ScalarProperty Name="cod_edc" ColumnName="cod_edc" />
+          <ScalarProperty Name="id_edc" ColumnName="id_edc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="edc_formato">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.edc_formato">
+        <MappingFragment StoreEntitySet="edc_formato">
+          <ScalarProperty Name="edc_reconocido" ColumnName="edc_reconocido" />
+          <ScalarProperty Name="id_edc_padre" ColumnName="id_edc_padre" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_edc" ColumnName="id_edc" />
+          <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+          <ScalarProperty Name="id_edc_formato" ColumnName="id_edc_formato" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresa">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.empresa">
+        <MappingFragment StoreEntitySet="empresa">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="cod_sui_empresa" ColumnName="cod_sui_empresa" />
+          <ScalarProperty Name="sigla_empresa" ColumnName="sigla_empresa" />
+          <ScalarProperty Name="nombre_empresa" ColumnName="nombre_empresa" />
+          <ScalarProperty Name="dv_nit_empresa" ColumnName="dv_nit_empresa" />
+          <ScalarProperty Name="nit_empresa" ColumnName="nit_empresa" />
+          <ScalarProperty Name="cod_empresa" ColumnName="cod_empresa" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="formato">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.formato">
+        <MappingFragment StoreEntitySet="formato">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+          <ScalarProperty Name="tipo_formato" ColumnName="tipo_formato" />
+          <ScalarProperty Name="flag_formato_div" ColumnName="flag_formato_div" />
+          <ScalarProperty Name="nombre_formato" ColumnName="nombre_formato" />
+          <ScalarProperty Name="cod_formato" ColumnName="cod_formato" />
+          <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="log_auditoria">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.log_auditoria">
+        <MappingFragment StoreEntitySet="log_auditoria">
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="valor_nuevo" ColumnName="valor_nuevo" />
+          <ScalarProperty Name="valor_antiguo" ColumnName="valor_antiguo" />
+          <ScalarProperty Name="columna_afectada" ColumnName="columna_afectada" />
+          <ScalarProperty Name="id_registro_tabla" ColumnName="id_registro_tabla" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="id_log" ColumnName="id_log" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="naturaleza_concepto">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.naturaleza_concepto">
+        <MappingFragment StoreEntitySet="naturaleza_concepto">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="desc_naturaleza" ColumnName="desc_naturaleza" />
+          <ScalarProperty Name="id_naturaleza_concepto" ColumnName="id_naturaleza_concepto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="servicio">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.servicio">
+        <MappingFragment StoreEntitySet="servicio">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="nombre_servicio" ColumnName="nombre_servicio" />
+          <ScalarProperty Name="cod_servicio" ColumnName="cod_servicio" />
+          <ScalarProperty Name="id_servicio" ColumnName="id_servicio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipo_accion">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.tipo_accion">
+        <MappingFragment StoreEntitySet="tipo_accion">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="descripcion_tipo_accion" ColumnName="descripcion_tipo_accion" />
+          <ScalarProperty Name="id_tipo_accion" ColumnName="id_tipo_accion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipo_concepto">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.tipo_concepto">
+        <MappingFragment StoreEntitySet="tipo_concepto">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="des_tipo_concepto" ColumnName="des_tipo_concepto" />
+          <ScalarProperty Name="id_tipo_concepto" ColumnName="id_tipo_concepto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tramo">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.tramo">
+        <MappingFragment StoreEntitySet="tramo">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="descripcion_tramo" ColumnName="descripcion_tramo" />
+          <ScalarProperty Name="id_tramo" ColumnName="id_tramo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="permiso">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.permiso">
+        <MappingFragment StoreEntitySet="permiso">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="desc_permiso" ColumnName="desc_permiso" />
+          <ScalarProperty Name="id_permiso" ColumnName="id_permiso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="role">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.role">
+        <MappingFragment StoreEntitySet="role">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre_rol" ColumnName="nombre_rol" />
+          <ScalarProperty Name="id_role" ColumnName="id_role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="role_permiso">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.role_permiso">
+        <MappingFragment StoreEntitySet="role_permiso">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="id_permiso" ColumnName="id_permiso" />
+          <ScalarProperty Name="id_role" ColumnName="id_role" />
+          <ScalarProperty Name="id_role_permiso" ColumnName="id_role_permiso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="identificacion_persona" ColumnName="identificacion_persona" />
+          <ScalarProperty Name="nombre_persona" ColumnName="nombre_persona" />
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresa_actividad">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.empresa_actividad">
+        <MappingFragment StoreEntitySet="empresa_actividad">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="usuario_actualizacion" ColumnName="usuario_actualizacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_empresa_actividad" ColumnName="id_empresa_actividad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="historial_aom">
+      <EntityTypeMapping TypeName="CREG_Analitica_AWSModel.historial_aom">
+        <MappingFragment StoreEntitySet="historial_aom">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="error" ColumnName="error" />
+          <ScalarProperty Name="ruta_aom" ColumnName="ruta_aom" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="fecha_carga" ColumnName="fecha_carga" />
+          <ScalarProperty Name="usuario_carga" ColumnName="usuario_carga" />
+          <ScalarProperty Name="tamanio_aom" ColumnName="tamanio_aom" />
+          <ScalarProperty Name="extension_aom" ColumnName="extension_aom" />
+          <ScalarProperty Name="anio_aom" ColumnName="anio_aom" />
+          <ScalarProperty Name="nombre_archivo_aom" ColumnName="nombre_archivo_aom" />
+          <ScalarProperty Name="nombre_original_archivo_aom" ColumnName="nombre_original_archivo_aom" />
+          <ScalarProperty Name="id_tramo" ColumnName="id_tramo" />
+          <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_historial_aom" ColumnName="id_historial_aom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ModelOracleCREG.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BIAOM.V_EMPRE_APPAOM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_EMPRE_APPAOM">
+    <Key>
+      <PropertyRef Name="NOMBRE_EMPRESA" />
+    </Key>
+    <Property Name="COD_EMPRESA" Type="number" Precision="38" Scale="0" />
+    <Property Name="NIT_EMPRESA" Type="number" Precision="38" Scale="0" />
+    <Property Name="DIV_NIT_EMPRESA" Type="number" Precision="38" Scale="0" />
+    <Property Name="NOMBRE_EMPRESA" Type="varchar2" MaxLength="120" Nullable="false" />
+    <Property Name="SIGLA_EMPRESA" Type="varchar2" MaxLength="30" />
+    <Property Name="COD_SUI_EMPRESA" Type="number" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityContainer Name="ModelOracleCREGStoreContainer">
+    <EntitySet Name="V_EMPRE_APPAOM" EntityType="Self.V_EMPRE_APPAOM" store:Type="Views" store:Schema="BIAOM">
+      <DefiningQuery>SELECT 
+"V_EMPRE_APPAOM"."COD_EMPRESA" AS "COD_EMPRESA", 
+"V_EMPRE_APPAOM"."NIT_EMPRESA" AS "NIT_EMPRESA", 
+"V_EMPRE_APPAOM"."DIV_NIT_EMPRESA" AS "DIV_NIT_EMPRESA", 
+"V_EMPRE_APPAOM"."NOMBRE_EMPRESA" AS "NOMBRE_EMPRESA", 
+"V_EMPRE_APPAOM"."SIGLA_EMPRESA" AS "SIGLA_EMPRESA", 
+"V_EMPRE_APPAOM"."COD_SUI_EMPRESA" AS "COD_SUI_EMPRESA"
+FROM "BIAOM"."V_EMPRE_APPAOM" "V_EMPRE_APPAOM"</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

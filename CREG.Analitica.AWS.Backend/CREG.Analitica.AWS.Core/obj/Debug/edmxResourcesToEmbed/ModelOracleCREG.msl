@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelOracleCREGStoreContainer" CdmEntityContainer="EntitiesOracleCREG">
+    <EntitySetMapping Name="V_EMPRE_APPAOM">
+      <EntityTypeMapping TypeName="ModelOracleCREG.V_EMPRE_APPAOM">
+        <MappingFragment StoreEntitySet="V_EMPRE_APPAOM">
+          <ScalarProperty Name="COD_SUI_EMPRESA" ColumnName="COD_SUI_EMPRESA" />
+          <ScalarProperty Name="SIGLA_EMPRESA" ColumnName="SIGLA_EMPRESA" />
+          <ScalarProperty Name="NOMBRE_EMPRESA" ColumnName="NOMBRE_EMPRESA" />
+          <ScalarProperty Name="DIV_NIT_EMPRESA" ColumnName="DIV_NIT_EMPRESA" />
+          <ScalarProperty Name="NIT_EMPRESA" ColumnName="NIT_EMPRESA" />
+          <ScalarProperty Name="COD_EMPRESA" ColumnName="COD_EMPRESA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

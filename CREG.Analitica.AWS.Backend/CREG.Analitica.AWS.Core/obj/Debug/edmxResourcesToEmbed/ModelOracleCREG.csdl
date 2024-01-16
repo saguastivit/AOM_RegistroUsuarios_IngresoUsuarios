@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ModelOracleCREG" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EntitiesOracleCREG" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="V_EMPRE_APPAOM" EntityType="ModelOracleCREG.V_EMPRE_APPAOM" />
+  </EntityContainer>
+  <EntityType Name="V_EMPRE_APPAOM">
+    <Key>
+      <PropertyRef Name="NOMBRE_EMPRESA" />
+    </Key>
+    <Property Name="COD_EMPRESA" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="NIT_EMPRESA" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="DIV_NIT_EMPRESA" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="NOMBRE_EMPRESA" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="SIGLA_EMPRESA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="COD_SUI_EMPRESA" Type="Decimal" Precision="38" Scale="0" />
+  </EntityType>
+</Schema>

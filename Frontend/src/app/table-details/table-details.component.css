@@ -1,0 +1,131 @@
+/***************************/
+.containerForm {
+  width: 92%;
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0px 4px 9px rgba(23, 26, 31, 0.11);
+  border-radius: 24px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.modal-content {
+  width: 900px;
+  height: auto;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-header-left {
+  font-size: 1.6rem;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  border-right: 0.05px solid lightgray;
+  border-top-left-radius: 1.6rem;
+  background-color: #5abeec;
+  color: #ffffff;
+}
+
+.table-header-mid {
+  font-size: 1.6rem;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  border-right: 0.05px solid lightgray;
+  background-color: #5abeec;
+  color: #ffffff;
+}
+
+.table-header-right {
+  font-size: 1.6rem;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  border-color: transparent;
+  border-top-right-radius: 1.6rem;
+  background-color: #5abeec;
+  color: #ffffff;
+}
+
+.table.table-striped td {
+  font-size: 1.4rem;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  border: solid 1px lightgray;
+  border-style: none solid solid none;
+}
+
+.table-input-group td {
+  padding: 1rem !important;
+}
+
+.table tr td:first-child {
+  border-left-style: solid;
+}
+.table-same-data tr td:first-child {
+  border-left-style: none;
+}
+
+.table tr:first-child th:first-child {
+  border-top-left-radius: 1.6rem;
+}
+
+.table tr:first-child th:last-child {
+  border-top-right-radius: 1.6rem;
+}
+
+.table tr:last-child td:first-child {
+  border-bottom-left-radius: 1.6rem;
+}
+
+.table tr:last-child td:last-child {
+  border-bottom-right-radius: 1.6rem;
+}
+
+.table tr:first-child td {
+  border-top-style: 0;
+}
+
+.table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+/**********************/
+/* Agrega estos estilos al componente o en tu hoja de estilos global */
+
+.modal-content {
+  width: 100%;
+  max-width: 1020px;
+  margin: 0 auto; /* Esto centrará el modal horizontalmente */
+}
+
+.modal-header {
+  background-color: #007bff; /* Cambia el color de fondo del encabezado según tus preferencias */
+  color: #ffffff; /* Cambia el color del texto del encabezado según tus preferencias */
+}
+
+.modal-body {
+  padding: 20px; /* Añade un espacio interno al cuerpo del modal */
+}
+
+/* Estilos para los botones */
+.btn-secondary, .btn-primary {
+  width: 50%; /* Ancho del 50% para los botones */
+}
+
+/* Estilo adicional para el botón de cerrar */
+.btn-close {
+  color: #ffffff; /* Cambia el color del botón de cerrar según tus preferencias */
+  margin-left: auto;
+}
+
+.logo {
+  height: 220px;
+  width: 300px;
+  margin: auto;
+}

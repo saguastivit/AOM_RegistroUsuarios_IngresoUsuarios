@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://localhost:8089',
+  apiRegisterBasic: 'ms-registro/datosEmpresa',
+  apiRegisterSolicitante: 'ms-registro/datosSolicitante',
+  apiRegisterRepresentante: 'ms-registro/datosRepresentante',
+  apiChangeEstatus: 'ms-registro/cambiarEstado',
+  apiAltaEmpresa: 'ms-registro/altaEmpresa',
+  login: 'ms-registro/login',
 };
 
 /*

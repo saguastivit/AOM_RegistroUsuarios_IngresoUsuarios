@@ -1,0 +1,37 @@
+.containerForm {
+    width: 90%;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0px 4px 9px rgba(23, 26, 31, 0.11);
+    border-radius: 24px;
+    padding: 10px;
+    margin-bottom: 20px;    
+}
+
+
+
+.modal-content {
+    width: 100%;
+    max-width: 1020px;
+    margin: 0 auto; /* Esto centrará el modal horizontalmente */
+  }
+  
+  .modal-header {
+    background-color: #007bff; /* Cambia el color de fondo del encabezado según tus preferencias */
+    color: #ffffff; /* Cambia el color del texto del encabezado según tus preferencias */
+  }
+  
+  .modal-body {
+    padding: 20px; /* Añade un espacio interno al cuerpo del modal */
+  }
+  
+  /* Estilos para los botones */
+  .btn-secondary, .btn-primary {
+    width: 50%; /* Ancho del 50% para los botones */
+  }
+  
+  /* Estilo adicional para el botón de cerrar */
+  .btn-close {
+    color: #ffffff; /* Cambia el color del botón de cerrar según tus preferencias */
+    margin-left: auto;
+  }

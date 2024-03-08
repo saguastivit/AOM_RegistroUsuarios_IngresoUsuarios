@@ -20,9 +20,9 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   // tslint:disable-next-line: typedef
-  testConection(){
+/*   testConection(){
     return this.http.get(`${this.baseUrl}/values`);
-  }
+  } */
 
   // tslint:disable-next-line: typedef
   loginUser(user: any){

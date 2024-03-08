@@ -1,0 +1,16 @@
+<ng-template #template>
+  <div class="modal-content">
+    <div class="modal-header">
+    <img src="src/assets/images/logo-creg.svg" alt="" />
+      <button type="button" class="close" (click)="bsModalRef.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>{{ message }}</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">Aceptar</button>
+    </div>
+  </div>
+</ng-template>

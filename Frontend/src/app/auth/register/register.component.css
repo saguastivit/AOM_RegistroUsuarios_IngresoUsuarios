@@ -1,0 +1,81 @@
+.steps-vertical {
+  margin: 1em;
+  width: 100%;
+  counter-reset: stepCount;
+  padding: 10px;
+}
+.steps-vertical,
+.steps-vertical *::before,
+.steps-vertical *::after {
+  box-sizing: border-box;
+
+}
+.step {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+  flex-direction: column;
+  position: relative;
+}
+.step.active ~ .step {
+  background-color: gray;
+}
+.step.active ~ .step::before {
+  background-color: #4285f4 !important;
+}
+.step-info {
+  text-align: center;
+  align-self: flex-start;
+  line-height: 2rem;
+  display: flex;
+  position: relative;
+}
+.step-info::before {
+  counter-increment: stepCount;
+  content: counter(stepCount);
+  text-align: center;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  color: #fff;
+  transform: translateX(50%);
+  border-radius: 50%;
+  background: dodgerblue;
+  width: 2em;
+  height: 2em;
+}
+.step-label {
+  font-weight: 600;
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.87);
+  flex-flow: column nowrap;
+  order: 2;
+  margin-left: 4rem;
+  margin-top: 0.2rem;
+}
+
+.step-content {
+  display: block;
+  margin-left: 8rem;
+  padding: 0.87rem;
+}
+
+.steps-vertical > .step:not(:last-child):after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: calc(100% - 1.75rem);
+  left: 1.91rem;
+  top: 1.9rem;
+  background-color: dodgerblue;
+}
+
+.steps-vertical > .step.active-step ~ .step .step-info::before, .steps-vertical > .step.active-step ~ .step::after, .steps-vertical > .step.active-step::after {
+  background-color: lightblue;
+}
+
+/* .steps-vertical > .step.active-step ~ .step .step-content {
+  visibility: hidden;
+  height: 1rem;
+}  */

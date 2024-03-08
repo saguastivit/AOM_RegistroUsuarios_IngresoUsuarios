@@ -10,16 +10,14 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import * as $ from "jquery";
-
+import * as $ from 'jquery';
 
 // componentes
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
+
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { HeaderComponent } from './components//shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
-
 
 // rutas
 import { APP_ROUTING } from './app-routes';
@@ -47,6 +45,17 @@ import { TblActivitiesComponent } from './components/shared/tbl-activities/tbl-a
 import { InfoUsersComponent } from './components/shared/info-users/info-users.component';
 import { TblUsersComponent } from './components/shared/tbl-users/tbl-users.component';
 
+//register
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TableDetailsComponent } from './table-details/table-details.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { FormInfoBasicComponent } from './auth/register/form-info-basic/form-info-basic.component';
+import { FormDatosContactoComponent } from './auth/register/form-datos-contacto/form-datos-contacto.component';
+import { FormRepresentanteLegalComponent } from './auth/register/form-representante-legal/form-representante-legal.component';
+import { SuccessModalComponent } from './constants/success-modal/success-modal.component';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -74,23 +83,34 @@ import { TblUsersComponent } from './components/shared/tbl-users/tbl-users.compo
     TblActivitiesComponent,
     UsersComponent,
     InfoUsersComponent,
-    TblUsersComponent
+    TblUsersComponent,
+    //aqui lo nuevo de registro
+
+    RegisterComponent,
+    FormInfoBasicComponent,
+    FormDatosContactoComponent,
+    FormRepresentanteLegalComponent,
+    TableDetailsComponent,
+    SuccessModalComponent,
   ],
-  imports: [        
-    APP_ROUTING,    
+  imports: [
+    APP_ROUTING,
     FormsModule,
-    CommonModule,    
-    BrowserModule,  
-    HttpClientModule,      
-    NgMultiSelectDropDownModule.forRoot(),  
+    CommonModule,
+    BrowserModule,
+    HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot(),
     BrowserAnimationsModule,
     DataTablesModule,
     ToastrModule.forRoot(),
     OAuthModule.forRoot(),
     ModalModule.forRoot(),
-    NgbModule
+    NgbModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    PaginationModule.forRoot(),
   ],
   providers: [OAuthService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

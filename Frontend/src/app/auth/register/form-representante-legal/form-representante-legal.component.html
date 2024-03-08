@@ -1,0 +1,111 @@
+<!-- form-datos-contacto.component.html -->
+<!-- <h2>Datos Representante Legal</h2> -->
+<form [formGroup]="datosRepresentanteForm" class=" containerForm mt-3 row" (ngSubmit)="handleSubmit()">
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <div class="mb-3 col-4">
+    <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+    <select class="form-control" id="tipoDocumento" formControlName="tipoDocumento"
+      [ngClass]="{'is-invalid':hasHerrors('tipoDocumento', 'required') }">
+      <option value="" disabled selected>Selecciona un tipo</option>
+      <option value="cedula">Cédula de Ciudadanía</option>
+      <option value="pasaporte">Pasaporte</option>
+      <option value="cedula-extranjeria">Cédula de Extranjería</option>
+    </select>
+  </div>
+  <div class="mb-3 col-4">
+    <label for="numeroDocumento" class="form-label">Número de Documento</label>
+    <input type="text" class="form-control" id="numeroDocumento" formControlName="numeroDocumento"
+      [ngClass]="{'is-invalid':hasHerrors('numeroDocumento', 'required') }"
+      [maxlength]="datosRepresentanteForm.get('tipoDocumento')?.value === 'cedula-extranjeria' ? 7 : 10"
+      />
+  </div>
+  <div class="mb-3 col-4">
+    <label for="primerNombre" class="form-label">Primer Nombre</label>
+    <input type="text" class="form-control" id="primerNombre" formControlName="primerNombre" maxlength="50"
+      [ngClass]="{'is-invalid':hasHerrors('primerNombre', 'required') }" />
+  </div>
+  <div class="mb-3 col-4">
+    <label for="segundoNombre" class="form-label">Segundo Nombre</label>
+    <input type="text" class="form-control" id="segundoNombre" formControlName="segundoNombre" maxlength="50" />
+  </div>
+  <div class="mb-3 col-4">
+    <label for="primerApellido" class="form-label">Primer Apellido</label>
+    <input type="text" class="form-control" id="primerApellido" formControlName="primerApellido" maxlength="50"
+      [ngClass]="{'is-invalid':hasHerrors('primerApellido', 'required') }" />
+  </div>
+  <div class="mb-3 col-4">
+    <label for="segundoApellido" class="form-label">Segundo Apellido</label>
+    <input type="text" class="form-control" id="segundoApellido" formControlName="segundoApellido" maxlength="50" />
+  </div>
+  <div class="mb-3 col-4">
+    <label for="telefonoContacto" class="form-label">Teléfono de Contacto</label>
+    <input type="text" class="form-control" id="telefonoContacto" formControlName="telefonoContacto"
+      [ngClass]="{'is-invalid':datosRepresentanteForm.touched && datosRepresentanteForm.hasError('requireOne') }" maxlength="10" />
+
+    </div>
+  <div class="mb-3 col-4">
+    <label for="ext" class="form-label">Extensión</label>
+    <input type="text" class="form-control" id="ext" formControlName="ext" maxlength="10" />
+  </div>
+  <div class="mb-3 col-4">
+    <label for="celular" class="form-label">Celular</label>
+    <input type="text" class="form-control" id="celular" formControlName="celular"
+      [ngClass]="{'is-invalid':datosRepresentanteForm.touched && datosRepresentanteForm.hasError('requireOne') }" maxlength="10" />
+
+  </div>
+  <div class="mb-3 col-12">
+    <label for="email" class="form-label">Correo Electronico
+      <span class="text-info" data-bs-toggle="tooltip" data-bs-placement="top"
+        title="Ingrese la dirección del correo electrónico de contacto, del representante legal de la Empresa, a este serán enviadas las credenciales de ingreso del usuario administrador de la empresa">
+        <i class="bi bi-info-circle"></i>
+      </span>
+    </label>
+    <input type="email" class="form-control" id="email" formControlName="email"
+      [ngClass]="{'is-invalid':hasHerrors('email', 'email')  || hasHerrors('email', 'required') }" />
+  </div>
+
+  <div class="mb-3 col-12">
+    <label for="archivoIdentidadPDF" class="form-label">Cargue aquí la fotocopia del documento de identidad del representante legal de la empresa en formato pdf</label>
+    <input
+    type="file"
+    class="form-control"
+    id="archivoIdentidadPDF"
+    formControlName="archivoIdentidadPDF"
+    (change)="handleFileChange($event)"
+    [ngClass]="{'is-invalid':datosRepresentanteForm.touched && datosRepresentanteForm.hasError('archivopdf') }"
+    />
+  </div>
+
+  <div class="d-flex justify-contend-center gap-3 w-75 mx-auto">
+    <button type="button" class="btn btn-secondary w-50 mx-auto" (click)="handleBack()" >Atras</button>
+    <button type="submit" class="btn btn-primary w-50 mx-auto" >Enviar</button>
+  </div>
+</form>
+
+<ng-template #modalTemplate>
+  <div class="modal-content">
+    <div class="modal-header">
+
+      <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body text-center">
+      <img src="/assets/images/logo.png" alt="" class="logo" />>
+      <p>La solicitud inicial para registrar su empresa ante la Comisión de regulación de Energía y Gas – CREG fue enviada de manera exitosa. </p>
+      <br>
+      <p>Dentro de los siguientes cinco (5) días hábiles, recibirá una respuesta a los correos registrados en su solicitud. Agradecemos su atención.</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modalRef?.hide()">Aceptar</button>
+    </div>
+  </div>
+</ng-template>

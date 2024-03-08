@@ -1,0 +1,37 @@
+
+/* ---------- Contenidos ------------ */
+.ttl-pag {
+  background: #20479E;
+  background-size: cover;
+  height: 2rem;
+}
+
+.ttl-pag h1 {
+  color: #41E5DE;
+  font-size: 2.5rem;
+  line-height: 6.8rem;
+}
+
+.ttl-pag .btn-login {
+  margin-top: 2.35rem;
+}
+
+.miga-pan .usuario {
+  margin-top: 1rem;
+}
+
+.miga-pan .usuario p {
+  line-height: 1rem;
+  color: #20479E;
+}
+
+.miga-pan .usuario p a {
+  color: #20479E;
+}
+
+.miga-pan .usuario p span {
+  font-size: 0.875rem;
+}
+
+
+@import '~bootstrap/dist/css/bootstrap.min.css';

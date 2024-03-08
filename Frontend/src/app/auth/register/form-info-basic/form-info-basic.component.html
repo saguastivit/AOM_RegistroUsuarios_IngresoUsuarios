@@ -1,0 +1,65 @@
+<form class="containerForm row mt-3" [formGroup]="infoBasicaForm" (ngSubmit)="handleSubmit()" enctype="multipart/form-data">
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
+  <div class="col-4 icon-link m-3 align-items-center">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="tipoPersona" id="personaNatural" value="Persona Natural" formControlName="tipoPersona">
+      <label class="form-check-label" for="personaNatural">Persona Natural</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="tipoPersona" id="personaJuridica" value="Persona Juridica" formControlName="tipoPersona" checked>
+      <label class="form-check-label" for="personaJuridica">Persona Juridica</label>
+    </div>
+  </div>
+
+  <div class="mb-3 col-5">
+    <label for="numeroNit" class="form-label">Número de Nit</label>
+    <input [ngClass]="{'is-invalid': hasHerrors('numeroNit', 'required') }"
+           type="text" class="form-control" id="numeroNit" formControlName="numeroNit"
+           (blur)="handleFindNit($event)"
+           (input)="handleNumeroNitInput($event)" [maxlength]="infoBasicaForm.get('tipoPersona')?.value === 'Persona Natural' ? 13 : 11"/>
+  </div>
+  <div class="mb-3 col-2">
+    <label for="dv" class="form-label">DV</label>
+    <select class="form-control" id="dv" formControlName="dv" [ngClass]="{'is-invalid':hasHerrors('dv', 'required') }">
+      <option value="" disabled selected>Selecciona</option>
+      <option *ngFor="let number of [1, 2, 3, 4, 5, 6, 7, 8, 9]" [value]="number">{{ number }}</option>
+    </select>
+  </div>
+  <div class="mb-3 col-6">
+    <label for="email" class="form-label">Correo Electronico
+      <span class="text-info" data-toggle="tooltip" data-placement="top" title="Dirección de correo electrónico de contacto o notificación de la empresa, a este serán enviadas las notificaciones de aprobación o rechazo de la solicitud y demás notificaciones oficiales de la CREG.”.">
+        <i class="bi bi-info-circle"></i>
+      </span>
+    </label>
+
+    <input [ngClass]="{'is-invalid':hasHerrors('email', 'email')  || hasHerrors('email', 'required') }" type="email"
+      class="form-control" id="email" formControlName="email" />
+    <div class="text-danger" *ngIf="hasHerrors('email', 'email')">Error en el Formato de Email </div>
+
+  </div>
+
+  <div class="mb-3 col-6">
+    <label for="telefonoEmpresa" class="form-label">Telefono de la Empresa</label>
+    <input [ngClass]="{'is-invalid':hasHerrors('telefonoEmpresa', 'required') }" type="text" class="form-control"
+      id="telefonoEmpresa" formControlName="telefonoEmpresa" maxlength="10" />
+
+  </div>
+  <div class="mb-3 col-12">
+    <label for="nombreEmpresa" class="form-label">Nombre de la Empresa</label>
+    <input [ngClass]="{'is-invalid':hasHerrors('nombreEmpresa', 'required') }" type="text" class="form-control"
+      id="nombreEmpresa" formControlName="nombreEmpresa" />
+
+  </div>
+
+  <div class="mb-3 col-12">
+    <label for="nameArchivoPDF" class="form-label">Cargue aquí el certificado de existencia y representación legal de la empresa, expedido por la Cámara de Comercio con al menos treinta (30) días de antelación en formato PDF</label>
+    <input type="file" [ngClass]="{'is-invalid':hasHerrors('nameArchivoPDF', 'required')}" class="form-control" id="nameArchivoPDF" formControlName="nameArchivoPDF" (change)="handleFileChange($event)" />
+
+  </div>
+  <button type="submit" class="btn btn-primary w-50 mx-auto" [disabled]="isButtonDisabled()">
+    <span *ngIf="_formDataService.loading$ | async" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+    Siguiente
+  </button>
+</form>

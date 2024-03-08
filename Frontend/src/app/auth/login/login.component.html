@@ -1,0 +1,102 @@
+<div class="mt-1 h-full main-form-panel" >
+  <div class="alert alert-success alert-dismissible fade show mx-auto" role="alert">
+    <strong>Bienvenido al Sistema de Cargue de Información para Regulación de la CREG.</strong> Si su empresa aún no está registrada, por favor ingrese una "Solicitud de Registro".
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+    <div class="containerForm panel-heading register-header">
+        <div *ngIf="hasStateChanged">
+        <div *ngIf="mensajeErrorLogin" class="alert alert-danger" role="alert">
+            {{ mensajeErrorLogin }}
+          </div>
+        <div *ngIf="forgotpassMesage" class="alert alert-success" role="alert">
+            {{ forgotpassMesage }}
+          </div>
+        </div>
+        <form [formGroup]="loginForm" class="mx-auto p-2" (submit)="handleSubmit()">
+            <h2 class="text-center mb-4">Ingresar usuario</h2>
+
+            <div class="textbox">
+                <label for="email">Usuario</label>
+                <div class="text-field">
+                    <input class="form-control" type="email" id="user" name="user" formControlName="user">
+                </div>
+            </div>
+
+            <div class="textbox">
+                <label for="password">Contraseña</label>
+                <div class="text-field">
+                    <input class="form-control" type="password" id="pass" name="pass" formControlName="pass">
+                </div>
+                <div class="forgot-password" (click)="openSuccessModal()">
+                    <span class="pseudo-link">¿Olvidó la contraseña?</span>
+                </div>
+            </div>
+            <div class="mb-3 ">
+              <label for="esRepresentanteLegal" class="form-label"
+                >¿Es usted Empleado CREG?.</label
+              >
+              <div class="switch switch-md">
+                <input
+                  [name]="'esRepresentanteLegal'"
+                  [checked]="isAdministrador"
+                  type="checkbox"
+                  class="toggle-switch__checkbox"
+                  (change)="handleChange($event)"
+                />
+                <div class="toggle-switch__knobs">
+                  {{ isAdministrador ? "Si" : "No" }}
+                </div>
+                <div class="toggle-switch__layer"></div>
+              </div>
+            </div>
+
+            <div class="mx-auto mt-4 text-center">
+                <button class="btn btn-primary w-75" type="submit" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="containerForm mb-5">
+        <div class="text-center">
+            <h3>¿Su Empresa aún no está registrada?</h3>
+        </div>
+
+        <div class="mx-auto px-5 text-center mt-4 mb-5">
+            <a class="btn btn-secondary w-75" routerLink="/registro" type="submit">SOLICITUD DE REGISTRO</a>
+        </div>
+<!--
+        <div class="line mx-auto"></div>
+
+        <div class="d-flex gap-4 justify-content-center mt-1">
+            <a href="#">Condiciones de Uso</a>
+            <a href="#">Política de privacidad</a>
+        </div> -->
+    </div>
+</div>
+
+
+<ng-template #modalLogin>
+  
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center row">
+          <img src="/assets/images/logo.png" alt="" class="logo" />
+          <label for="email">Ingrese Su correo, para recuperar la contraseña</label>
+          <div class="text-field">
+            <input class="form-control" type="email" id="emailForgot" name="emailForgot" [(ngModel)]="emailForgot" placeholder="Ingresa tu correo electrónico">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="sendEmail()">Enviar</button>
+        </div>
+      </div>
+    </div>
+  
+</ng-template>

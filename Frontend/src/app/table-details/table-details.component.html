@@ -1,0 +1,177 @@
+<div class="mt-5 container mx-auto" >
+  <h2 class="text-center mx-auto">
+    Tablero de solitudes de inscripción de prestadores de servicios públicos.
+  </h2>
+  <br />
+</div>
+
+<div class="row px-5">
+  <div id="toolbar" class="col-4 py-5">
+    <h4>Filtrar por Estado</h4>
+    <select class="form-control" [(ngModel)]="selectedStatus" (change)="getSolicitudesByStatus()">
+      <option value="">Todos los Estados</option>
+      <option value="EN REVISION">En Revisión</option>
+      <option value="APROBADO">Aprobado</option>
+      <option value="POR REVISAR">Por Revisar</option>
+      <option value="RECHAZADO">Rechazado</option>
+    </select>
+  </div>
+
+  <div class="col-12">
+    <table
+      class="table table-striped"
+      id="table"
+      data-toggle="table"
+      data-search="true"
+      data-filter-control="true"
+      data-show-export="true"
+      data-click-to-select="true"
+      data-toolbar="#toolbar"
+      style="table-layout: fixed; width: 100%"
+    >
+      <thead>
+        <tr>
+          <th class="table-header-left text-center w-5">ID SOLICITUD</th>
+          <th
+            class="table-header-mid text-center w-5"
+            data-filter-control="input"
+            data-sortable="true"
+          >
+            NIT
+          </th>
+          <th
+            class="table-header-mid text-center w-5"
+            data-filter-control="input"
+            data-sortable="true"
+          >
+            EMPRESA
+          </th>
+          <th
+            class="table-header-mid text-center w-10"
+            data-filter-control="input"
+            data-sortable="true"
+          >
+            REPRESENTANTE LEGAL
+          </th>
+          <th
+            class="table-header-mid text-center w-10"
+            data-filter-control="select"
+            data-sortable="true"
+          >
+            FECHA SOLICITUD
+          </th>
+          <th
+            class="table-header-mid text-center w-10"
+            data-filter-control="select"
+            data-sortable="true"
+          >
+            ESTADO
+          </th>
+          <th class="table-header-right  text-center w-5">
+            ACCIONES
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <ng-container *ngFor="let item of paginatedData; let i = index">
+          <tr>
+            <td>{{ item.solicitudId }}</td>
+            <td>{{ item.nit }}</td>
+            <td>{{ item.empresa }}</td>
+            <td>{{ item.representanteLegal }}</td>
+            <td>{{ item.fechaSolicitud | date:'dd-MM-yyyy' }}</td>
+            <td>{{ item.estado }}</td>
+            <td>
+              <button class="btn btn-info mx-2" (click)="openModal(template, item)">
+                <i class="bi bi-eye"></i>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <pagination
+    (ngModel)="currentPage"
+    [totalItems]="data.length"
+    [itemsPerPage]="pageSize"
+    (pageChanged)="pageChanged($event)"
+    class="pagination mx-auto"
+    [maxSize]="5"
+    previousText="&lsaquo; Anterior"
+    nextText="Siguiente &rsaquo;"
+    firstText="Primero"
+    lastText="Último"
+  ></pagination>
+  </div>
+</div>
+<ng-template #template >
+  <div class="modal-content"  style="max-width: 1082px; width: full;">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{selectedItem.empresa}}</h4>
+      <button
+        type="button"
+        class="btn-close close pull-right"
+        aria-label="Close"
+        (click)="modalRef?.hide()"
+      >
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div *ngIf="selectedItem" class="row containerForm">
+          <div *ngFor="let item of getObjectKeys(selectedItem)" class="mb-3 col-4">
+            <label [for]="item.key" class="form-label">{{ item.key | titlecase }}</label>
+            <ng-container *ngIf="item.key !== 'documentoRl' && item.key !== 'certificado'; ">
+              <input
+                type="text"
+                class="form-control"
+                [id]="item.key"
+                [value]="item.value"
+                readonly
+              />
+            </ng-container>           
+          </div>
+          <div class="mb-3 col-12">          
+            <a class="button nav_link" href="{{selectedItem.certificado}}" download="">Descargar PDF Certificado </a>
+            
+          </div>
+          <div class="mb-3 col-12">          
+            
+            <a class="button nav_link" href="{{selectedItem.documentoRl}}" download="">Descargar Documento Representante Legal </a>
+          </div>
+        </div>
+        <div class="d-flex justify-contend-center gap-3 w-75 mx-auto">
+          <button type="button" class="btn btn-secondary w-50 mx-auto" (click)="openModal2(modaRechazo)">Rechazar Solicitud</button>
+          <button type="submit" class="btn btn-primary w-50 mx-auto" (click)="approveSolicitud(selectedItem)">Aceptar Solicitud</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #modaRechazo>
+  <div class="modal-content">
+    <div class="modal-header">
+      <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body text-center row ">
+      <img src="/assets/images/logo.png" alt="" class="logo" />
+      <label for="text">Ingrese El motivo del Rechazo a la Solicitud</label>
+      <div class="text-field">
+          <input class="form-control w-75" type="text" id="rechazo" name="rechazo" [(ngModel)]="rechazoMotive" >
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="rejectSolicitud(selectedItem)">Enviar</button>
+    </div>
+  </div>
+</ng-template>

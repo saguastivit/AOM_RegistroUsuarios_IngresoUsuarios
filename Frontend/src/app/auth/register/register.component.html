@@ -1,0 +1,48 @@
+<div class="container mt-2">
+  <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    Bienvenido al formulario de solicitud de registro de empresas, para el cargue de Información de Costos para Regulación - AOM
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="">
+    <ul class="steps-vertical">
+      <li class="step" title="Información Básica">
+        <div class="step-info">
+          <div class="step-label">Información Básica</div>
+        </div>
+        <div class="step-content" *ngIf="activeStep === 'basico'">
+          <app-form-info-basic></app-form-info-basic>
+        </div>
+      </li>
+      <li class="step" title="Datos de Contacto">
+        <div class="step-info">
+          <div class="step-label">{{ representanteLegal ? "Datos del Representante Legal" :"Datos de Contacto"}}</div>
+        </div>
+        <div class="step-content" *ngIf="activeStep === 'contacto'">
+          <app-form-datos-contacto></app-form-datos-contacto>
+        </div>
+      </li>
+      <li class="step" title="Datos del Representante Legal" *ngIf="activeStep === 'representante' && !representanteLegal">
+        <div class="step-info">
+          <div class="step-label">Datos del Representante Legal</div>
+        </div>
+        <div class="step-content">
+          <app-form-representante-legal></app-form-representante-legal>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <ng-template #content let-modal>
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="height: 500px; width: 600px; background-color: azure;">
+          <app-success-modal></app-success-modal>
+        </div>
+      </div>
+    </ng-template>
+
+  </div>
+</div>
+
+
